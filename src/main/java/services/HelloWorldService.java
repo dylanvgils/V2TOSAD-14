@@ -14,7 +14,7 @@ public class HelloWorldService {
     @GET
     @Produces("text/plain")
     public Response sayHello() {
-        STGroup stGroup = new STGroupFile("text.stg");
+        STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource("text.stg").getFile());
         ST templateExample = stGroup.getInstanceOf("templateExample");
         templateExample.add("param", "Hello World");
         return Response.status(200).entity(templateExample.render()).build();
