@@ -5,9 +5,9 @@ package businessLogic;
  */
 public class Attribute {
     private String key;
-    private String value;
+    private int value;
 
-    public Attribute(String key, String value) {
+    public Attribute(String key, int value) {
         this.key = key;
         this.value = value;
     }

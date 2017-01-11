@@ -16,4 +16,12 @@ public class Operator {
         this.name = name;
         this.codeTranslation = codeTranslation;
     }
+
+    public void addColumn(Column column) {
+        this.columns.add(column);
+    }
+
+    public void addAttribute(Attribute attribute) {
+        this.attributes.add(attribute);
+    }
 }

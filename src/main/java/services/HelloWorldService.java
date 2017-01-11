@@ -1,5 +1,7 @@
 package services;
 
+import businessLogic.RuleService;
+import businessLogic.ServiceProvider;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
@@ -14,6 +16,9 @@ public class HelloWorldService {
     @GET
     @Produces("text/plain")
     public Response sayHello() {
+
+        RuleService service = ServiceProvider.getRuleService();
+
         STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource("text.stg").getFile());
         ST templateExample = stGroup.getInstanceOf("templateExample");
         templateExample.add("param", "Hello World");

@@ -1,3 +1,7 @@
 templateExample(param) ::= <<
     This is a template with the following param: (<param>)
 >>
+templateRange(table, name, column, operator, min, max) ::=<<
+    ALTER TABLE <table> ADD
+    CONSTRAINT <name> CHECK (<column> <operator> <min> and <max>)
+>>
