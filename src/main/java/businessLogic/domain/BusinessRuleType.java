@@ -1,7 +1,5 @@
 package businessLogic.domain;
 
-import java.util.List;
-
 /**
  * Created by Dion on 1/13/2017.
  */
