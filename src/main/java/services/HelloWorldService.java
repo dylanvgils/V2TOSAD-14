@@ -1,9 +1,7 @@
 package services;
 
 
-import businessLogic.RuleService;
-import businessLogic.ServiceProvider;
-
+import businessLogic.RuleFacade;
 import org.json.JSONObject;
 
 import org.stringtemplate.v4.ST;
@@ -21,13 +19,8 @@ public class HelloWorldService {
     @GET
     @Produces("text/plain")
     public Response sayHello() {
-
-        RuleService service = ServiceProvider.getRuleService();
-
-        STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource("text.stg").getFile());
-        ST templateExample = stGroup.getInstanceOf("templateExample");
-        templateExample.add("param", "Hello World");
-        return Response.status(200).entity(templateExample.render()).build();
+        RuleFacade.createAttributeRule();
+        return Response.status(200).entity(RuleFacade.generateRule(1)).build();
     }
 
     @GET

@@ -1,7 +1,7 @@
-package businessLogic;
+package businessLogic.domain;
 
 /**
- * Created by Dion on 1/10/2017.
+ * Created by Dion on 1/13/2017.
  */
 public class Column {
     private String name;
@@ -10,5 +10,9 @@ public class Column {
     public Column(String name, String type) {
         this.name = name;
         this.type = type;
+    }
+
+    public String getName() {
+        return name;
     }
 }
