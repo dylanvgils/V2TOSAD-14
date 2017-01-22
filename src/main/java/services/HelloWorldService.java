@@ -4,10 +4,6 @@ package services;
 import businessLogic.RuleFacade;
 import org.json.JSONObject;
 
-import org.stringtemplate.v4.ST;
-import org.stringtemplate.v4.STGroup;
-import org.stringtemplate.v4.STGroupFile;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
