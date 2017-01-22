@@ -1,7 +1,7 @@
 package businessLogic;
 
 import businessLogic.domain.*;
-import businessLogic.generate.Generator;
+import businessLogic.generate.Generate;
 
 /**
  * Created by Dion on 1/13/2017.
@@ -16,6 +16,6 @@ public class RuleFacade {
     }
 
     public static String generateRule(int ruleID){
-        return Generator.generate((AttributeRule) BusinessRule.getRule(ruleID));
+        return Generate.generate((AttributeRule) BusinessRule.getRule(ruleID));
     }
 }

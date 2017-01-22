@@ -6,13 +6,13 @@ import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
 
 /**
- * Created by Dion on 1/13/2017.
+ * Created by Dion on 1/22/2017.
  */
-public class Generator {
+public class AttributeRangeGenerate implements Generate<AttributeRule> {
 
-    public static String generate(AttributeRule rule){
-       Generator g = new Generator();
-       return g.generateRule(rule);
+    public static String AttributeRangeGenerate(AttributeRule rule){
+        AttributeRangeGenerate g = new AttributeRangeGenerate();
+        return g.generateRule(rule);
     }
     public String generateRule(AttributeRule rule){
         STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource("text.stg").getFile());
@@ -25,5 +25,4 @@ public class Generator {
         templateExample.add("max", rule.getAttributes().get(1).getValue());
         return templateExample.render();
     }
-
 }

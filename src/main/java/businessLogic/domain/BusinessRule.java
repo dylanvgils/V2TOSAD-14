@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by Dion on 1/13/2017.
  */
-public class BusinessRule {
+public abstract class BusinessRule {
 
     private int ruleID;
     private String name;
