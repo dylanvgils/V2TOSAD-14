@@ -15,7 +15,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
         try {
-            String apiKey = requestContext.getHeaderString("API-Key");
+            String apiKey = requestContext.getHeaderString("api-Key");
 
             if (!apiKey.equals("ceef8bcd-0021-432d-9f82-77284c2a2347")) {
                 throw new NotAuthorizedException("Unauthorized");
