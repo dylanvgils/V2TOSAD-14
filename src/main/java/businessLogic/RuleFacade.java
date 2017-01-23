@@ -16,6 +16,7 @@ public class RuleFacade {
     }
 
     public static String generateRule(int ruleID){
-        return Generate.generate((AttributeRule) BusinessRule.getRule(ruleID));
+        //return Generate.generate((AttributeRule) BusinessRule.getRule(ruleID));
+        return null;
     }
 }
