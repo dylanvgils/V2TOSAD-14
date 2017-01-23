@@ -11,7 +11,7 @@ public class TableMetaDAOImpl extends BaseDAO implements TableMetaDAO {
 
         try (Connection conn = getConnection()) {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT table_name FROM user_tables WHERE table_name NOT LIKE 'BRG%'");
+            ResultSet rs = stmt.executeQuery("select * from view_table_meta");
 
             while (rs.next()) {
                 result.add(new TableMetaDTO(
@@ -29,7 +29,7 @@ public class TableMetaDAOImpl extends BaseDAO implements TableMetaDAO {
         List<ColumnMetaDTO> result = new ArrayList<>();
 
         try (Connection conn = getConnection()) {
-            PreparedStatement stmt = conn.prepareStatement("SELECT column_name, data_type, data_length, data_precision, data_scale FROM user_tab_columns WHERE table_name = UPPER(?)");
+            PreparedStatement stmt = conn.prepareStatement("select * from view_column_meta where table_name = UPPER(?)");
             stmt.setString(1, tableName);
             ResultSet rs = stmt.executeQuery();
 
