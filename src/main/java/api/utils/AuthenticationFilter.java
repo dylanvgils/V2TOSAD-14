@@ -1,4 +1,6 @@
-package services;
+package api.utils;
+
+import org.json.JSONObject;
 
 import javax.annotation.Priority;
 import javax.ws.rs.NotAuthorizedException;
@@ -14,6 +16,8 @@ import java.io.IOException;
 public class AuthenticationFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
+        JSONObject errorMsg = new JSONObject().put("message", "401 - Unauthorized");
+
         try {
             String apiKey = requestContext.getHeaderString("api-Key");
 
@@ -21,7 +25,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 throw new NotAuthorizedException("Unauthorized");
             }
         } catch (NullPointerException | NotAuthorizedException e) {
-            requestContext.abortWith(Response.status(401).entity("401 - Unauthorized").build());
+            requestContext.abortWith(Response.status(401).entity(errorMsg.toString()).build());
         }
     }
 }

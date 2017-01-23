@@ -10,7 +10,7 @@ public class TableMetaDAOImpl extends BaseDAO implements TableMetaDAO {
         List<TableMetaDTO> result = new ArrayList<>();
 
         try (Connection conn = getConnection()) {
-            Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT table_name FROM user_tables WHERE table_name NOT LIKE 'BRG%'");
 
             while (rs.next()) {
