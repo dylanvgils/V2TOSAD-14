@@ -1,0 +1,96 @@
+package api.services;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.ColumnMetaDTO;
+import persistence.DatabaseSchemaDTO;
+import persistence.PersistenceFacade;
+import persistence.TableMetaDTO;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+
+@Path("/meta")
+@Produces(MediaType.APPLICATION_JSON)
+public class DatabaseMetaService {
+    @GET
+    @Path("/schemas")
+    public Response getDatabases() {
+        JSONObject jsonObject = new JSONObject();
+
+        JSONArray jsonArray = new JSONArray();
+        for (DatabaseSchemaDTO ds : PersistenceFacade.getSchemas()) {
+            jsonArray.put(new JSONObject()
+                .put("schema_name", ds.getName())
+            );
+        }
+
+        jsonObject.put("schemas", jsonArray);
+
+        return Response.status(200).entity(jsonObject.toString()).build();
+    }
+
+    @GET
+    @Path("/schemas/{schemaName}")
+    public Response getTables(@PathParam("schemaName") String schemaName) {
+        JSONObject jsonObject = new JSONObject();
+
+        JSONArray tableArray = new JSONArray();
+        for (TableMetaDTO tm : PersistenceFacade.getTables(schemaName)) {
+            tableArray.put(tm.getName());
+        }
+
+        jsonObject.put("tables", tableArray);
+
+        return Response.status(200).entity(jsonObject.toString()).build();
+    }
+
+    @GET
+    @Path("/schemas/{schemaName}/{tableName}")
+    public Response getColumns(@PathParam("schemaName") String schemaName, @PathParam("tableName") String tableName) {
+        JSONObject jsonObject = new JSONObject();
+
+        JSONArray columnArray = new JSONArray();
+        for (ColumnMetaDTO cm : PersistenceFacade.getColumens(schemaName, tableName)) {
+            columnArray.put(new JSONObject()
+                    .put("column_name", cm.getName())
+                    .put("data_type", cm.getDataType())
+                    .put("data_length", cm.getDataLength())
+                    .put("data_precision", cm.getDataPrecision())
+                    .put("data_scale", cm.getDataScale())
+            );
+        }
+
+        jsonObject.put(tableName, columnArray);
+
+        return Response.status(200).entity(jsonObject.toString()).build();
+    }
+
+    @GET
+    @Path("/schemas/{schemaName}/{tableName}/{columnName}")
+    public Response getColumn(@PathParam("schemaName") String schemaName, @PathParam("tableName") String tableName, @PathParam("columnName") String columnName) {
+        Status status = Status.OK;
+        JSONObject jsonObject = new JSONObject();
+
+        ColumnMetaDTO cm = PersistenceFacade.getColumn(schemaName, tableName, columnName);
+        if (cm != null) {
+            jsonObject.put(columnName, new JSONObject()
+                    .put("data_type", cm.getDataType())
+                    .put("data_length", cm.getDataLength())
+                    .put("data_precision", cm.getDataPrecision())
+                    .put("data_scale", cm.getDataScale())
+            );
+        } else {
+            status = Status.NOT_FOUND;
+            jsonObject.put("message", String.format("Column with name %s does not exist in table %s.", columnName, tableName));
+        }
+
+
+        return Response.status(status).entity(jsonObject.toString()).build();
+    }
+}
