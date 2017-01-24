@@ -13,7 +13,7 @@ public class PersistenceFacade {
     private static final ApiKeyDAO apiKey = new ApiKeyDAOImpl();
     private static final AccessLogDAO accessLog = new AccessLogDAOImpl();
 
-    public static int getApikeyID(String key) {
+    private static int getApikeyID(String key) {
         return apiKey.getApikeyID(key);
     }
 
@@ -22,7 +22,7 @@ public class PersistenceFacade {
     }
 
     public static void logAccess(String key, String ip, String agent, String url) {
-        accessLog.log(key, ip, agent, url);
+        accessLog.log(getApikeyID(key), ip, agent, url);
     }
 
     public static List<DatabaseSchemaDTO> getSchemas() {
