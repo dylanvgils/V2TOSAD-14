@@ -73,7 +73,7 @@ public class DatabaseMetaService {
             jsonObject.put(tableName, columnArray);
         } else {
             status = Status.NOT_FOUND;
-            jsonObject.put("Message", String.format("Table with name `%s` does not exists schema `%s`.", tableName, schemaName));
+            jsonObject.put("message", String.format("Table with name `%s` does not exists schema `%s`.", tableName, schemaName));
         }
 
         return Response.status(status).entity(jsonObject.toString()).build();
