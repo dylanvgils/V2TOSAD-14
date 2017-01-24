@@ -1,6 +1,9 @@
 package businessLogic.generate;
 
+import businessLogic.domain.Attribute;
 import businessLogic.domain.AttributeRule;
+import businessLogic.domain.Column;
+import businessLogic.domain.Table;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
@@ -17,12 +20,12 @@ public class AttributeRangeGenerate implements Generate<AttributeRule> {
     public String generateRule(AttributeRule rule){
         STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource("text.stg").getFile());
         ST templateExample = stGroup.getInstanceOf("templateRange");
-        templateExample.add("table", rule.getTable().getName());
-        templateExample.add("name", rule.getName());
-        templateExample.add("column",  rule.getColumn().getName());
+        templateExample.add("table", rule.getTables().getName());
+        templateExample.add("name", "koekje");
+        templateExample.add("column", rule.getColumns().getName());
         templateExample.add("operator", rule.getOperator());
         templateExample.add("min", rule.getAttributes().get(0).getValue());
-        templateExample.add("max", rule.getAttributes().get(1).getValue());
+        templateExample.add("max", rule.getAttributes().get(0).getValue());
         return templateExample.render();
     }
 }

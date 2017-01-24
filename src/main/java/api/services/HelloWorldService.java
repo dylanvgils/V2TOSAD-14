@@ -2,6 +2,7 @@ package api.services;
 
 
 import businessLogic.RuleFacade;
+import businessLogic.domain.*;
 import org.json.JSONObject;
 
 import javax.ws.rs.GET;
@@ -15,7 +16,12 @@ public class HelloWorldService {
     @GET
     @Produces("text/plain")
     public Response sayHello() {
-        RuleFacade.createAttributeRule();
+        Table.initTables();
+        AttributeRule.initAttributeRule();
+        Attribute.initAttributes();
+        BusinessRuleType.initRuleTypes();
+        FailureHandling.initFailureHandling();
+        Column.initColumns();
         return Response.status(200).entity(RuleFacade.generateRule(1)).build();
     }
 
