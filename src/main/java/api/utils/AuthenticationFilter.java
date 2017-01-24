@@ -1,12 +1,15 @@
 package api.utils;
 
 import org.json.JSONObject;
+import persistence.PersistenceFacade;
 
 import javax.annotation.Priority;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
@@ -14,17 +17,27 @@ import java.io.IOException;
 @Provider
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter {
+    @Context
+    private HttpServletRequest request;
+
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
         try {
-            String apiKey = requestContext.getHeaderString("api-Key");
+            String key = request.getHeader("api-key");
 
-            if (!apiKey.equals("ceef8bcd-0021-432d-9f82-77284c2a2347")) {
+            if (!PersistenceFacade.authenticated(key)) {
                 throw new NotAuthorizedException("Unauthorized");
             }
+
+            PersistenceFacade.logAccess(
+                key,
+                request.getRemoteAddr(),
+                request.getHeader("user-agent"),
+                request.getRequestURI()
+            );
         } catch (NullPointerException | NotAuthorizedException e) {
             JSONObject errorMsg = new JSONObject().put("message", "401 - Unauthorized");
-            requestContext.abortWith(Response.status(401).entity(errorMsg.toString()).build());
+            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity(errorMsg.toString()).build());
         }
     }
 }

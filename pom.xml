@@ -30,6 +30,11 @@
             <artifactId>stringtemplate</artifactId>
             <version>4.0.2</version>
         </dependency>
+        <dependency>
+            <groupId>tomcat</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>5.5.23</version>
+        </dependency>
     </dependencies>
 
     <build>

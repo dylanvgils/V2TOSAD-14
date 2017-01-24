@@ -20,18 +20,4 @@ public abstract class BaseDAO {
 
         return conn;
     }
-
-    protected int getRowCount(ResultSet rs) {
-        int count = 0;
-
-        try {
-            rs.last();
-            count = rs.getRow();
-            rs.beforeFirst();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return count;
-    }
 }

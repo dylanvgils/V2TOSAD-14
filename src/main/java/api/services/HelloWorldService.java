@@ -3,12 +3,10 @@ package api.services;
 
 import businessLogic.RuleFacade;
 import businessLogic.domain.*;
+import jdk.nashorn.internal.parser.JSONParser;
 import org.json.JSONObject;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 @Path("/hello")
@@ -35,6 +33,17 @@ public class HelloWorldService {
             .put("code", 200)
             .put("message", String.format("Hello, %s!", name))
         );
+
+        return Response.status(200).entity(jsonObject.toString()).build();
+    }
+
+    @POST
+    @Path("/json")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response jsonTest(String json) {
+        JSONObject jsonObject = new JSONObject(json)
+            .put("message", "YOLO");
 
         return Response.status(200).entity(jsonObject.toString()).build();
     }
