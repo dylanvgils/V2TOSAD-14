@@ -8,6 +8,7 @@ import java.util.List;
 
 public class TableMetaDAOImpl extends BaseDAO implements TableMetaDAO {
 
+    @Override
     public List<DatabaseSchemaDTO> getSchemas() {
         List<DatabaseSchemaDTO> result = new ArrayList<>();
 
@@ -28,6 +29,7 @@ public class TableMetaDAOImpl extends BaseDAO implements TableMetaDAO {
         return result;
     }
 
+    @Override
     public List<TableMetaDTO> getTables() {
         List<TableMetaDTO> result = new ArrayList<>();
 
@@ -64,6 +66,7 @@ public class TableMetaDAOImpl extends BaseDAO implements TableMetaDAO {
         return result;
     }
 
+    @Override
     public List<ColumnMetaDTO> getColumns(String tableName) {
         try (Connection conn = getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("select * from view_column_meta where table_name = upper(?)");
@@ -78,6 +81,7 @@ public class TableMetaDAOImpl extends BaseDAO implements TableMetaDAO {
         return null;
     }
 
+    @Override
     public ColumnMetaDTO getColumn(String tableName, String columnName) {
         try (Connection conn = getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("select * from view_column_meta where table_name = upper(?) and column_name = upper(?)");

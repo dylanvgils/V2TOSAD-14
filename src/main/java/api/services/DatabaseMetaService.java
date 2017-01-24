@@ -32,7 +32,7 @@ public class DatabaseMetaService {
 
         jsonObject.put("schemas", jsonArray);
 
-        return Response.status(200).entity(jsonObject.toString()).build();
+        return Response.status(Status.OK).entity(jsonObject.toString()).build();
     }
 
     @GET

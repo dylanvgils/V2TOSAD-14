@@ -1,6 +1,7 @@
 package api.utils;
 
 import org.json.JSONObject;
+import persistence.PersistenceFacade;
 
 import javax.annotation.Priority;
 import javax.ws.rs.NotAuthorizedException;
@@ -17,14 +18,14 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
         try {
-            String apiKey = requestContext.getHeaderString("api-Key");
+            String key = requestContext.getHeaderString("api-key");
 
-            if (!apiKey.equals("ceef8bcd-0021-432d-9f82-77284c2a2347")) {
+            if (!PersistenceFacade.authenticated(key)) {
                 throw new NotAuthorizedException("Unauthorized");
             }
         } catch (NullPointerException | NotAuthorizedException e) {
             JSONObject errorMsg = new JSONObject().put("message", "401 - Unauthorized");
-            requestContext.abortWith(Response.status(401).entity(errorMsg.toString()).build());
+            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity(errorMsg.toString()).build());
         }
     }
 }
