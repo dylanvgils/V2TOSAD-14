@@ -14,13 +14,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+import java.util.List;
 
 @Path("/meta")
 @Produces(MediaType.APPLICATION_JSON)
 public class DatabaseMetaService {
     @GET
     @Path("/schemas")
-    public Response getDatabases() {
+    public Response getSchemas() {
         JSONObject jsonObject = new JSONObject();
 
         JSONArray jsonArray = new JSONArray();
@@ -47,28 +48,35 @@ public class DatabaseMetaService {
 
         jsonObject.put("tables", tableArray);
 
-        return Response.status(200).entity(jsonObject.toString()).build();
+        return Response.status(Status.OK).entity(jsonObject.toString()).build();
     }
 
     @GET
     @Path("/schemas/{schemaName}/{tableName}")
     public Response getColumns(@PathParam("schemaName") String schemaName, @PathParam("tableName") String tableName) {
+        Status status = Status.OK;
         JSONObject jsonObject = new JSONObject();
-
         JSONArray columnArray = new JSONArray();
-        for (ColumnMetaDTO cm : PersistenceFacade.getColumens(schemaName, tableName)) {
-            columnArray.put(new JSONObject()
-                    .put("column_name", cm.getName())
-                    .put("data_type", cm.getDataType())
-                    .put("data_length", cm.getDataLength())
-                    .put("data_precision", cm.getDataPrecision())
-                    .put("data_scale", cm.getDataScale())
-            );
+
+        List<ColumnMetaDTO> columns = PersistenceFacade.getColumens(schemaName, tableName);
+        if (!columns.isEmpty()) {
+            for (ColumnMetaDTO cm : columns) {
+                columnArray.put(new JSONObject()
+                        .put("column_name", cm.getName())
+                        .put("data_type", cm.getDataType())
+                        .put("data_length", cm.getDataLength())
+                        .put("data_precision", cm.getDataPrecision())
+                        .put("data_scale", cm.getDataScale())
+                );
+            }
+
+            jsonObject.put(tableName, columnArray);
+        } else {
+            status = Status.NOT_FOUND;
+            jsonObject.put("Message", String.format("Table with name `%s` does not exists schema `%s`.", tableName, schemaName));
         }
 
-        jsonObject.put(tableName, columnArray);
-
-        return Response.status(200).entity(jsonObject.toString()).build();
+        return Response.status(status).entity(jsonObject.toString()).build();
     }
 
     @GET
@@ -87,7 +95,7 @@ public class DatabaseMetaService {
             );
         } else {
             status = Status.NOT_FOUND;
-            jsonObject.put("message", String.format("Column with name %s does not exist in table %s.", columnName, tableName));
+            jsonObject.put("message", String.format("Column with name `%s` does not exist in table `%s`.", columnName, tableName));
         }
 
 
