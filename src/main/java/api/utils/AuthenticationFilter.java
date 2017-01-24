@@ -17,12 +17,21 @@ import java.io.IOException;
 public class AuthenticationFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
+        String key = null;
+
         try {
-            String key = requestContext.getHeaderString("api-key");
+            key = requestContext.getHeaderString("api-key");
 
             if (!PersistenceFacade.authenticated(key)) {
                 throw new NotAuthorizedException("Unauthorized");
             }
+
+            PersistenceFacade.logAccess(
+                key,
+                requestContext.getHeaderString("x-forwarded-for"),
+                requestContext.getHeaderString("user-agent"),
+                requestContext.getUriInfo().getPath()
+            );
         } catch (NullPointerException | NotAuthorizedException e) {
             JSONObject errorMsg = new JSONObject().put("message", "401 - Unauthorized");
             requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity(errorMsg.toString()).build());

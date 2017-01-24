@@ -9,6 +9,24 @@ import java.sql.SQLException;
 
 public class ApiKeyDAOImpl extends BaseDAO implements ApiKeyDAO {
     @Override
+    public int getApikeyID(String key) {
+        try (Connection conn = getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement("select id from view_apikey where apikey= ?");
+
+            stmt.setString(1, key);
+
+            ResultSet rs = stmt.executeQuery();
+
+            rs.next();
+            return rs.getInt("id");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    @Override
     public boolean authenticate(String key) {
         try (Connection conn = getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("select id from view_apikey where apikey = ?");
