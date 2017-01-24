@@ -1,17 +1,18 @@
 package persistence;
 
 import persistence.api.AccessLogDAO;
-import persistence.api.AccessLogDAOImpl;
+import persistence.databaseMeta.TableMetaDAO;
+import persistence.api.AccessLogImpl;
 import persistence.api.ApiKeyDAO;
-import persistence.api.ApiKeyDAOImpl;
+import persistence.api.ApiKeyImpl;
 import persistence.databaseMeta.*;
 
 import java.util.List;
 
 public class PersistenceFacade {
-    private static final TableMetaDAO tableMeta = new TableMetaDAOImpl();
-    private static final ApiKeyDAO apiKey = new ApiKeyDAOImpl();
-    private static final AccessLogDAO accessLog = new AccessLogDAOImpl();
+    private static final TableMetaDAO tableMeta = new TableMetaImpl();
+    private static final ApiKeyDAO apiKey = new ApiKeyImpl();
+    private static final AccessLogDAO accessLog = new AccessLogImpl();
 
     private static int getApikeyID(String key) {
         return apiKey.getApikeyID(key);

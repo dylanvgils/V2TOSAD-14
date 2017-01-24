@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class AccessLogDAOImpl extends BaseDAO implements  AccessLogDAO {
+public class AccessLogImpl extends BaseDAO implements AccessLogDAO {
     @Override
     public void log(int keyID, String ip, String agent, String url) {
         try (Connection conn = getConnection()) {

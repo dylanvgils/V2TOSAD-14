@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TableMetaDAOImpl extends BaseDAO implements TableMetaDAO {
+public class TableMetaImpl extends BaseDAO implements TableMetaDAO {
 
     @Override
     public List<DatabaseSchemaDTO> getSchemas() {

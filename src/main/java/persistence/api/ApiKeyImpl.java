@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ApiKeyDAOImpl extends BaseDAO implements ApiKeyDAO {
+public class ApiKeyImpl extends BaseDAO implements ApiKeyDAO {
     @Override
     public int getApikeyID(String key) {
         try (Connection conn = getConnection()) {
