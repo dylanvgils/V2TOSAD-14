@@ -62,18 +62,18 @@ public class DatabaseMetaService {
         if (!columns.isEmpty()) {
             for (ColumnMetaDTO cm : columns) {
                 columnArray.put(new JSONObject()
-                        .put("column_name", cm.getName())
-                        .put("data_type", cm.getDataType())
-                        .put("data_length", cm.getDataLength())
-                        .put("data_precision", cm.getDataPrecision())
-                        .put("data_scale", cm.getDataScale())
+                    .put("column_name", cm.getName())
+                    .put("data_type", cm.getDataType())
+                    .put("data_length", cm.getDataLength())
+                    .put("data_precision", cm.getDataPrecision())
+                    .put("data_scale", cm.getDataScale())
                 );
             }
 
             jsonObject.put(tableName, columnArray);
         } else {
             status = Status.NOT_FOUND;
-            jsonObject.put("Message", String.format("Table with name `%s` does not exists schema `%s`.", tableName, schemaName));
+            jsonObject.put("message", String.format("Table with name `%s` does not exists schema `%s`.", tableName, schemaName));
         }
 
         return Response.status(status).entity(jsonObject.toString()).build();
@@ -88,10 +88,10 @@ public class DatabaseMetaService {
         ColumnMetaDTO cm = PersistenceFacade.getColumn(schemaName, tableName, columnName);
         if (cm != null) {
             jsonObject.put(columnName, new JSONObject()
-                    .put("data_type", cm.getDataType())
-                    .put("data_length", cm.getDataLength())
-                    .put("data_precision", cm.getDataPrecision())
-                    .put("data_scale", cm.getDataScale())
+                .put("data_type", cm.getDataType())
+                .put("data_length", cm.getDataLength())
+                .put("data_precision", cm.getDataPrecision())
+                .put("data_scale", cm.getDataScale())
             );
         } else {
             status = Status.NOT_FOUND;
