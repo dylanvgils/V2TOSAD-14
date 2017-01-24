@@ -1,4 +1,6 @@
-package persistence;
+package persistence.databaseMeta;
+
+import persistence.BaseDAO;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -2,10 +2,10 @@ package api.services;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import persistence.ColumnMetaDTO;
-import persistence.DatabaseSchemaDTO;
+import persistence.databaseMeta.ColumnMetaDTO;
+import persistence.databaseMeta.DatabaseSchemaDTO;
 import persistence.PersistenceFacade;
-import persistence.TableMetaDTO;
+import persistence.databaseMeta.TableMetaDTO;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

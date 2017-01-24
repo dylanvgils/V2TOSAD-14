@@ -1,4 +1,4 @@
-package persistence;
+package persistence.databaseMeta;
 
 public class DatabaseSchemaDTO {
     private String name;

@@ -1,4 +1,4 @@
-package persistence;
+package persistence.databaseMeta;
 
 import java.util.List;
 

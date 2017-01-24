@@ -1,4 +1,4 @@
-package persistence;
+package persistence.databaseMeta;
 
 public class ColumnMetaDTO {
     private String name;

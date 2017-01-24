@@ -1,5 +1,7 @@
 package persistence;
 
+import persistence.databaseMeta.*;
+
 import java.util.List;
 
 public class PersistenceFacade {
