@@ -4,10 +4,12 @@ import org.json.JSONObject;
 import persistence.PersistenceFacade;
 
 import javax.annotation.Priority;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
@@ -15,12 +17,13 @@ import java.io.IOException;
 @Provider
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter {
+    @Context
+    private HttpServletRequest request;
+
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
-        String key = null;
-
         try {
-            key = requestContext.getHeaderString("api-key");
+            String key = request.getHeader("api-key");
 
             if (!PersistenceFacade.authenticated(key)) {
                 throw new NotAuthorizedException("Unauthorized");
@@ -28,9 +31,9 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
             PersistenceFacade.logAccess(
                 key,
-                requestContext.getHeaderString("x-forwarded-for"),
-                requestContext.getHeaderString("user-agent"),
-                requestContext.getUriInfo().getPath()
+                request.getRemoteAddr(),
+                request.getHeader("user-agent"),
+                request.getRequestURI()
             );
         } catch (NullPointerException | NotAuthorizedException e) {
             JSONObject errorMsg = new JSONObject().put("message", "401 - Unauthorized");
