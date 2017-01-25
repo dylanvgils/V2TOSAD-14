@@ -48,6 +48,11 @@ public class Attribute {
         this.value = value;
     }
 
+    public Attribute(String key, String value) {
+        this.key = key;
+        this.value = value;
+    }
+
     public String getValue() {
         return value;
     }
