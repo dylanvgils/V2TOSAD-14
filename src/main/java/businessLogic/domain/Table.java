@@ -42,6 +42,11 @@ public class Table {
         this.name = name;
     }
 
+    public Table(String name) {
+        this.ruleID = ruleID;
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

@@ -3,6 +3,8 @@ package persistence.domain;
 
 import businessLogic.domain.Table;
 
+import java.util.List;
+
 public interface TableDAO {
-    Table getByBusinessRuleID(String ruleID);
+    List<Table> getByBusinessRuleID(int ruleID);
 }

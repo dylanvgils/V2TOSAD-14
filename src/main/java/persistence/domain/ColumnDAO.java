@@ -2,6 +2,8 @@ package persistence.domain;
 
 import businessLogic.domain.Column;
 
+import java.util.List;
+
 public interface ColumnDAO {
-    Column getByBusinessRuleID(String ruleID);
+    List<Column> getByBusinessRuleID(int ruleID);
 }
