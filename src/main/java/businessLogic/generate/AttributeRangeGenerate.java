@@ -1,9 +1,6 @@
 package businessLogic.generate;
 
-import businessLogic.domain.Attribute;
 import businessLogic.domain.AttributeRule;
-import businessLogic.domain.Column;
-import businessLogic.domain.Table;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
@@ -18,7 +15,7 @@ public class AttributeRangeGenerate implements Generate<AttributeRule> {
         return g.generateRule(rule);
     }
     public String generateRule(AttributeRule rule){
-        STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource("text.stg").getFile());
+        STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource("AttributeRangeRule.stg").getFile());
         ST templateExample = stGroup.getInstanceOf("templateRange");
         templateExample.add("table", rule.getTables().getName());
         templateExample.add("name", "koekje");

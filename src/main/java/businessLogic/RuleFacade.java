@@ -17,7 +17,7 @@ public class RuleFacade {
         }
     }
 
-    public static String generateRule(int ruleID){
+    private static String generateRule(int ruleID){
         GenerateFactory factory = new GenerateFactory();
 
         BusinessRule rule = BusinessRule.getRule(ruleID);

@@ -1,0 +1,20 @@
+templateRange(table, name, column, operator, min, max) ::=<<
+    ALTER TABLE <table> ADD
+    CONSTRAINT hiermoetapplicatiekomen_<table>_CNS_ARNG CHECK (<column> <operator> <min> and <max>)
+>>
+
+templateTrigger(table, name, column, operator, min, max, error) ::=<<
+create or replace trigger hiermoetapplicatiekomen_<table>_TRIGGER_ARNG
+before insert on <table>
+for each row
+  begin
+   l_passed := CHECK(:new.<column> <operator> <min> and <max>);
+
+   EXCEPTION
+   WHEN not l_passed THEN
+          RAISE_APPLICATION_ERROR (
+            num=> -20107,
+            msg=> <error>);
+
+  end;
+>>
