@@ -1,5 +1,6 @@
 package persistence;
 
+import businessLogic.domain.Attribute;
 import businessLogic.domain.BusinessRuleType;
 import businessLogic.domain.FailureHandling;
 import persistence.api.AccessLogDAO;
@@ -18,6 +19,7 @@ public class PersistenceFacade {
     private static final AccessLogDAO accessLog = new AccessLogImpl();
     private static final BusinessRuleTypeDAO businessRuleType = new BusinessRuleTypeImpl();
     private static final FailureHandelingDAO failureHandeling = new FailureHandelingImpl();
+    private static final AttributeDAO attribute = new AttributeImpl();
 
     private static int getApikeyID(String key) {
         return apiKey.getApikeyID(key);
@@ -53,5 +55,9 @@ public class PersistenceFacade {
 
     public static FailureHandling getFailureHandeling(int failureID) {
         return failureHandeling.getFailureHandelingByID(failureID);
+    }
+
+    public static List<Attribute> getAttributes(int ruleID) {
+        return attribute.getByBusinessRuleID(ruleID);
     }
 }

@@ -22,8 +22,6 @@ public class RuleFacade {
 
         BusinessRule rule = BusinessRule.getRule(ruleID);
 
-        rule.setError(FailureHandling.getFailureHandling(ruleID));
-        rule.setType(BusinessRuleType.getBusinessRuleType(ruleID));
         rule.setAttributes(Attribute.getAttributes(ruleID));
         rule.setColumns(Column.getColumns(ruleID));
         rule.setTables(Table.getTables(ruleID));

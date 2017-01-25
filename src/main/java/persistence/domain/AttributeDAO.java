@@ -2,6 +2,8 @@ package persistence.domain;
 
 import businessLogic.domain.Attribute;
 
+import java.util.List;
+
 public interface AttributeDAO {
-    Attribute getByBusinessRuleID(String ruleID);
+    List<Attribute> getByBusinessRuleID(int ruleID);
 }
