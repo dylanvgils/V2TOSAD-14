@@ -13,8 +13,7 @@ public class BusinessRuleType {
     private String name;
     private String code;
 
-    public BusinessRuleType(int ruleID, String name, String code) {
-        this.ruleID = ruleID;
+    public BusinessRuleType(String name, String code) {
         this.name = name;
         this.code = code;
     }
