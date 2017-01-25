@@ -21,4 +21,12 @@ public class FailureHandling {
     public int getRuleID() {
         return ruleID;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public int getErrorCode() {
+        return errorCode;
+    }
 }

@@ -1,8 +1,3 @@
-templateRange(table, name, column, operator, min, max) ::=<<
-    ALTER TABLE <table> ADD
-    CONSTRAINT hiermoetapplicatiekomen_<table>_CNS_ARNG CHECK (<column> <operator> <min> and <max>)
->>
-
 templateTrigger(table, name, column, operator, min, max, error_code, error) ::=<<
 create or replace hiermoetapplicatiekomen_<table>_CNS_ARNG
 before insert on <table>
@@ -11,7 +6,7 @@ for each row
     c_exception EXCEPTION;
     l_passed boolean := false;
 begin
-  if not(:new.<column> <operator> <min> and <max>) THEN
+  if not(:new.<column> <operator> <max>) THEN
     RAISE c_exception;
   END IF;
 

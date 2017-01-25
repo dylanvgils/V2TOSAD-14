@@ -35,4 +35,8 @@ public class Attribute {
     public String getValue() {
         return value;
     }
+
+    public String getKey(){
+        return key;
+    }
 }
