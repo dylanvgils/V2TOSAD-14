@@ -58,7 +58,7 @@ public class DatabaseMetaService {
         JSONObject jsonObject = new JSONObject();
         JSONArray columnArray = new JSONArray();
 
-        List<ColumnMetaDTO> columns = PersistenceFacade.getColumens(schemaName, tableName);
+        List<ColumnMetaDTO> columns = PersistenceFacade.getColumns(schemaName, tableName);
         if (!columns.isEmpty()) {
             for (ColumnMetaDTO cm : columns) {
                 columnArray.put(new JSONObject()
