@@ -1,5 +1,7 @@
 package businessLogic.domain;
 
+import persistence.domain.AttributeImpl;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +29,9 @@ public abstract class BusinessRule<X> {
         return rules;
     }
 
-    public static BusinessRule getRule(int id){
+    public static BusinessRule getRule(int id) {
         for (BusinessRule r : rules) {
-            if(r.getRuleID() == id) return r;
+            if (r.getRuleID() == id) return r;
         }
         return null;
     }
@@ -62,6 +64,16 @@ public abstract class BusinessRule<X> {
 
     public FailureHandling getError() {
         return error;
+    }
+
+    public String getValueByKey(String key){
+        for (Attribute a : attributes) {
+            if(a.getKey() == key){
+                return a.getValue();
+            }
+        }
+        return null;
+
     }
 
     public abstract X getAttributes();

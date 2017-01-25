@@ -16,13 +16,15 @@ public class AttributeRangeGenerate implements Generate<AttributeRule> {
     }
     public String generateRule(AttributeRule rule){
         STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource("AttributeRangeRule.stg").getFile());
-        ST templateExample = stGroup.getInstanceOf("templateRange");
+        ST templateExample = stGroup.getInstanceOf("templateTrigger");
         templateExample.add("table", rule.getTables().getName());
         templateExample.add("name", "koekje");
         templateExample.add("column", rule.getColumns().getName());
         templateExample.add("operator", rule.getOperator());
-        templateExample.add("min", rule.getAttributes().get(0).getValue());
-        templateExample.add("max", rule.getAttributes().get(0).getValue());
+        templateExample.add("min", rule.getValueByKey("min"));
+        templateExample.add("max", rule.getValueByKey("max"));
+        templateExample.add("error_code", rule.getError().getErrorCode());
+        templateExample.add("error", rule.getError().getMessage());
         return templateExample.render();
     }
 }

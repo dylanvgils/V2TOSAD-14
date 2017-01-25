@@ -13,8 +13,8 @@ public class Attribute {
     private static List<Attribute> attibutes = new ArrayList<>();
 
     public static void initAttributes(){
-        attibutes.add(new Attribute(1, "key", "value"));
-        attibutes.add(new Attribute(2, "key", "value"));
+        attibutes.add(new Attribute(1, "min", "0"));
+        attibutes.add(new Attribute(1, "max", "1"));
         attibutes.add(new Attribute(3, "key", "value"));
     }
 
@@ -50,5 +50,9 @@ public class Attribute {
 
     public String getValue() {
         return value;
+    }
+
+    public String getKey(){
+        return key;
     }
 }

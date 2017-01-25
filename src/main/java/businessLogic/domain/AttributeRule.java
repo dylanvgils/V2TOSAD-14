@@ -8,16 +8,15 @@ import java.util.List;
 public class AttributeRule extends BusinessRule {
 
     public static void initAttributeRule(){
-        createRule(1, "name", "operator");
-        createRule(2, "name", "operator");
-        createRule(3, "name", "operator");
+        createRule(1, "name", "operator", BusinessRuleType.getBusinessRuleType(1), FailureHandling.getFailureHandling(1));
+        createRule(2, "name", "operator", BusinessRuleType.getBusinessRuleType(2), FailureHandling.getFailureHandling(2));
+        createRule(3, "name", "operator", BusinessRuleType.getBusinessRuleType(3), FailureHandling.getFailureHandling(3));
     }
 
-    public static AttributeRule createRule(int ruleID, String name, String operator){
-//        AttributeRule newRule = new AttributeRule(ruleID, name, operator);
-//        addRule(newRule);
-//        return newRule;
-        return null;
+    public static AttributeRule createRule(int ruleID, String name, String operator, BusinessRuleType type, FailureHandling error){
+        AttributeRule newRule = new AttributeRule(ruleID, name, operator, type, error);
+        addRule(newRule);
+        return newRule;
     }
 
     public AttributeRule(int ruleID, String name, String operator, BusinessRuleType type, FailureHandling error) {
