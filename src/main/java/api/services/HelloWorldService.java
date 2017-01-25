@@ -15,17 +15,12 @@ import java.util.List;
 
 @Path("/hello")
 public class HelloWorldService {
-//    @GET
-//    @Produces("text/plain")
-//    public Response sayHello() {
-//        Table.initTables();
-//        AttributeRule.initAttributeRule();
-//        Attribute.initAttributes();
-//        BusinessRuleType.initRuleTypes();
-//        FailureHandling.initFailureHandling();
-//        Column.initColumns();
-//        return Response.status(200).entity(RuleFacade.generateRule(1)).build();
-//    }
+    @GET
+    @Path("/id/{id}")
+    @Produces("text/plain")
+    public Response sayHello(@PathParam("id") int id) {
+        return Response.status(200).entity(RuleFacade.generateRule(id)).build();
+    }
 
     @GET
     @Path("{name}")

@@ -1,9 +1,5 @@
 package persistence.databaseMeta;
 
-import persistence.databaseMeta.ColumnMetaDTO;
-import persistence.databaseMeta.DatabaseSchemaDTO;
-import persistence.databaseMeta.TableMetaDTO;
-
 import java.util.List;
 
 public interface TableMetaDAO {

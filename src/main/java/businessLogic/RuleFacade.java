@@ -18,13 +18,18 @@ public class RuleFacade {
     }
 
     public static String generateRule(int ruleID){
+        BusinessRule rule;
         GenerateFactory factory = new GenerateFactory();
 
-        BusinessRule rule = BusinessRule.getRule(ruleID);
 
-        rule.setAttributes(Attribute.getAttributes(ruleID));
-        rule.setColumns(Column.getColumns(ruleID));
-        rule.setTables(Table.getTables(ruleID));
+        try {
+            rule = BusinessRule.getRule(ruleID);
+            rule.setAttributes(Attribute.getAttributes(ruleID));
+            rule.setColumns(Column.getColumns(ruleID));
+            rule.setTables(Table.getTables(ruleID));
+        } catch (NullPointerException e) {
+            return null;
+        }
 
         Generate generator = factory.getGenerate(rule.getType().getCode());
 

@@ -2,9 +2,11 @@ package api.services;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import persistence.PersistenceApiFacade;
+import persistence.PersistenceDatabaseMetaFacade;
 import persistence.databaseMeta.ColumnMetaDTO;
 import persistence.databaseMeta.DatabaseSchemaDTO;
-import persistence.PersistenceFacade;
+import persistence.PersistenceDomainFacade;
 import persistence.databaseMeta.TableMetaDTO;
 
 import javax.ws.rs.GET;
@@ -25,7 +27,7 @@ public class DatabaseMetaService {
         JSONObject jsonObject = new JSONObject();
 
         JSONArray jsonArray = new JSONArray();
-        for (DatabaseSchemaDTO ds : PersistenceFacade.getSchemas()) {
+        for (DatabaseSchemaDTO ds : PersistenceDatabaseMetaFacade.getSchemas()) {
             jsonArray.put(new JSONObject()
                 .put("schema_name", ds.getName())
             );
@@ -42,7 +44,7 @@ public class DatabaseMetaService {
         JSONObject jsonObject = new JSONObject();
 
         JSONArray tableArray = new JSONArray();
-        for (TableMetaDTO tm : PersistenceFacade.getTables(schemaName)) {
+        for (TableMetaDTO tm : PersistenceDatabaseMetaFacade.getTables(schemaName)) {
             tableArray.put(tm.getName());
         }
 
@@ -58,7 +60,7 @@ public class DatabaseMetaService {
         JSONObject jsonObject = new JSONObject();
         JSONArray columnArray = new JSONArray();
 
-        List<ColumnMetaDTO> columns = PersistenceFacade.getColumns(schemaName, tableName);
+        List<ColumnMetaDTO> columns = PersistenceDatabaseMetaFacade.getColumns(schemaName, tableName);
         if (!columns.isEmpty()) {
             for (ColumnMetaDTO cm : columns) {
                 columnArray.put(new JSONObject()
@@ -85,7 +87,7 @@ public class DatabaseMetaService {
         Status status = Status.OK;
         JSONObject jsonObject = new JSONObject();
 
-        ColumnMetaDTO cm = PersistenceFacade.getColumn(schemaName, tableName, columnName);
+        ColumnMetaDTO cm = PersistenceDatabaseMetaFacade.getColumn(schemaName, tableName, columnName);
         if (cm != null) {
             jsonObject.put(columnName, new JSONObject()
                 .put("data_type", cm.getDataType())

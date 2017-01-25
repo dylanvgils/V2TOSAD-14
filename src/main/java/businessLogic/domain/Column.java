@@ -1,6 +1,6 @@
 package businessLogic.domain;
 
-import persistence.PersistenceFacade;
+import persistence.PersistenceDomainFacade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class Column {
     private static List<Column> columns = new ArrayList<>();
 
     public static List<Column> getColumns(int ruleID){
-        columns.addAll(PersistenceFacade.getColumns(ruleID));
+        columns.addAll(PersistenceDomainFacade.getColumns(ruleID));
         return columns;
     }
 

@@ -1,10 +1,5 @@
 package businessLogic.domain;
 
-import persistence.PersistenceFacade;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Dion on 1/13/2017.
  */

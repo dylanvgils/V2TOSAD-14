@@ -4,9 +4,12 @@ import businessLogic.domain.AttributeRule;
 import businessLogic.domain.BusinessRule;
 import businessLogic.domain.BusinessRuleType;
 import persistence.BaseDAO;
-import persistence.PersistenceFacade;
+import persistence.PersistenceDomainFacade;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class BusinessRuleImpl extends BaseDAO implements BusinessRuleDAO {
     @Override
@@ -17,7 +20,7 @@ public class BusinessRuleImpl extends BaseDAO implements BusinessRuleDAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                BusinessRuleType ruleType = PersistenceFacade.getBusinessRuleType(rs.getInt("rule_id"));
+                BusinessRuleType ruleType = PersistenceDomainFacade.getBusinessRuleType(rs.getInt("rule_id"));
 
                 switch (ruleType.getCode()) {
                     case "ARNG":
@@ -29,7 +32,7 @@ public class BusinessRuleImpl extends BaseDAO implements BusinessRuleDAO {
                             rs.getString("name"),
                             rs.getString("operator"),
                             ruleType,
-                            PersistenceFacade.getFailureHandeling(rs.getInt("failure_id"))
+                            PersistenceDomainFacade.getFailureHandeling(rs.getInt("failure_id"))
                         );
                 }
             }

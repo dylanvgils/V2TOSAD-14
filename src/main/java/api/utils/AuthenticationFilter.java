@@ -1,7 +1,8 @@
 package api.utils;
 
 import org.json.JSONObject;
-import persistence.PersistenceFacade;
+import persistence.PersistenceApiFacade;
+import persistence.PersistenceDomainFacade;
 
 import javax.annotation.Priority;
 import javax.servlet.http.HttpServletRequest;
@@ -25,11 +26,11 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         try {
             String key = request.getHeader("api-key");
 
-            if (!PersistenceFacade.authenticated(key)) {
+            if (!PersistenceApiFacade.authenticated(key)) {
                 throw new NotAuthorizedException("Unauthorized");
             }
 
-            PersistenceFacade.logAccess(
+            PersistenceApiFacade.logAccess(
                 key,
                 request.getRemoteAddr(),
                 request.getHeader("user-agent"),

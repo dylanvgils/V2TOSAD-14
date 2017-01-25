@@ -3,8 +3,6 @@ package persistence;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public abstract class BaseDAO {
     protected final Connection getConnection() {

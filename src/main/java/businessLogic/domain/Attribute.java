@@ -1,6 +1,6 @@
 package businessLogic.domain;
 
-import persistence.PersistenceFacade;
+import persistence.PersistenceDomainFacade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class Attribute {
     private static List<Attribute> attibutes = new ArrayList<>();
 
     public static List<Attribute> getAttributes(int ruleID){
-        attibutes.addAll(PersistenceFacade.getAttributes(ruleID));
+        attibutes.addAll(PersistenceDomainFacade.getAttributes(ruleID));
         return attibutes;
     }
 
