@@ -1,5 +1,7 @@
 package businessLogic.domain;
 
+import persistence.PersistenceFacade;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,34 +14,12 @@ public class Column {
     private String type;
     private static List<Column> columns = new ArrayList<>();
 
-    public static void initColumns(){
-        columns.add(new Column(1, "test", "type"));
-        columns.add(new Column(2, "test", "type"));
-        columns.add(new Column(3, "test", "type"));
-    }
-
-    public static Column createColumn(int ruleID, String name, String type){
-        Column column = new Column(ruleID, name, type);
-        addColumn(column);
-        return column;
-    }
-
     public static List<Column> getColumns(int ruleID){
-        List<Column> columnByID = new ArrayList<>();
-        for (Column c : columns) {
-            if(c.getRuleID() == ruleID){
-                columnByID.add(c);
-            }
-        }
-        return columnByID;
+        columns.addAll(PersistenceFacade.getColumns(ruleID));
+        return columns;
     }
 
-    public static void addColumn(Column column){
-        columns.add(column);
-    }
-
-    public Column(int ruleID, String name, String type) {
-        this.ruleID = ruleID;
+    public Column(String name, String type) {
         this.name = name;
         this.type = type;
     }
