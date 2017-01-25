@@ -14,13 +14,14 @@ public class AttributeRule extends BusinessRule {
     }
 
     public static AttributeRule createRule(int ruleID, String name, String operator){
-        AttributeRule newRule = new AttributeRule(ruleID, name, operator);
-        addRule(newRule);
-        return newRule;
+//        AttributeRule newRule = new AttributeRule(ruleID, name, operator);
+//        addRule(newRule);
+//        return newRule;
+        return null;
     }
 
-    public AttributeRule(int ruleID, String name, String operator) {
-        super(ruleID, name, operator);
+    public AttributeRule(int ruleID, String name, String operator, BusinessRuleType type, FailureHandling error) {
+        super(ruleID, name, operator, type, error);
     }
 
     @Override

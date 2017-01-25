@@ -1,11 +1,14 @@
 package persistence;
 
+import businessLogic.domain.BusinessRuleType;
+import businessLogic.domain.FailureHandling;
 import persistence.api.AccessLogDAO;
 import persistence.databaseMeta.TableMetaDAO;
 import persistence.api.AccessLogImpl;
 import persistence.api.ApiKeyDAO;
 import persistence.api.ApiKeyImpl;
 import persistence.databaseMeta.*;
+import persistence.domain.*;
 
 import java.util.List;
 
@@ -13,6 +16,8 @@ public class PersistenceFacade {
     private static final TableMetaDAO tableMeta = new TableMetaImpl();
     private static final ApiKeyDAO apiKey = new ApiKeyImpl();
     private static final AccessLogDAO accessLog = new AccessLogImpl();
+    private static final BusinessRuleTypeDAO businessRuleType = new BusinessRuleTypeImpl();
+    private static final FailureHandelingDAO failureHandeling = new FailureHandelingImpl();
 
     private static int getApikeyID(String key) {
         return apiKey.getApikeyID(key);
@@ -40,5 +45,13 @@ public class PersistenceFacade {
 
     public static ColumnMetaDTO getColumn(String schemaName, String tableName, String columnName) {
         return tableMeta.getColumn(tableName, columnName);
+    }
+
+    public static BusinessRuleType getBusinessRuleType(int typeID) {
+        return businessRuleType.getBusinessRuleTypeByID(typeID);
+    }
+
+    public static FailureHandling getFailureHandeling(int failureID) {
+        return failureHandeling.getFailureHandelingByID(failureID);
     }
 }

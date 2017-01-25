@@ -35,10 +35,12 @@ public abstract class BusinessRule<X> {
     }
 
 
-    public BusinessRule(int ruleID, String name, String operator) {
+    public BusinessRule(int ruleID, String name, String operator, BusinessRuleType type, FailureHandling error) {
         this.ruleID = ruleID;
         this.name = name;
         this.operator = operator;
+        this.type = type;
+        this.error = error;
     }
 
 

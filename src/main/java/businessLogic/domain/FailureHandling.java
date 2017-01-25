@@ -45,6 +45,12 @@ public class FailureHandling {
         this.errorCode = errorCode;
     }
 
+    public FailureHandling(String type, String message, int errorCode) {
+        this.type = type;
+        this.message = message;
+        this.errorCode = errorCode;
+    }
+
     public int getRuleID() {
         return ruleID;
     }

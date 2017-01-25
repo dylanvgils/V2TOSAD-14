@@ -44,6 +44,12 @@ public class BusinessRuleType {
         this.code = code;
     }
 
+    public BusinessRuleType(String name, String code) {
+        this.ruleID = ruleID;
+        this.name = name;
+        this.code = code;
+    }
+
     public String getName() {
         return name;
     }
