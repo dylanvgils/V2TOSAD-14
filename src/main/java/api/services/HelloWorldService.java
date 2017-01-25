@@ -19,7 +19,9 @@ public class HelloWorldService {
     @Path("/id/{id}")
     @Produces("text/plain")
     public Response sayHello(@PathParam("id") int id) {
-        return Response.status(200).entity(RuleFacade.generateRule(id)).build();
+        String result = RuleFacade.generateRule(id);
+
+        return Response.status(200).entity(result == null ? "NOPE" : result).build();
     }
 
     @GET
