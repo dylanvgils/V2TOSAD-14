@@ -28,9 +28,7 @@ public class DatabaseMetaService {
 
         JSONArray jsonArray = new JSONArray();
         for (DatabaseSchemaDTO ds : PersistenceDatabaseMetaFacade.getSchemas()) {
-            jsonArray.put(new JSONObject()
-                .put("schema_name", ds.getName())
-            );
+            jsonArray.put(ds.getName());
         }
 
         jObject.put("schemas", jsonArray);

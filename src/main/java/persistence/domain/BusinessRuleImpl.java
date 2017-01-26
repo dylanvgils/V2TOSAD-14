@@ -31,6 +31,7 @@ public class BusinessRuleImpl extends BaseDAO implements BusinessRuleDAO {
                             rs.getInt("rule_id"),
                             rs.getString("name"),
                             rs.getString("operator"),
+                            rs.getString("trigger_type"),
                             ruleType,
                             PersistenceDomainFacade.getFailureHandeling(rs.getInt("failure_id"))
                         );

@@ -3,6 +3,7 @@ package businessLogic;
 import businessLogic.domain.*;
 import businessLogic.generate.Generate;
 import businessLogic.generate.GenerateFactory;
+import persistence.PersistenceGenerateFacade;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class RuleFacade {
         }
 
         Generate generator = factory.getGenerate(rule.getType().getCode());
-        System.out.println(rule.getType().getCode());
-        return generator.generateRule(lang, rule);
+        PersistenceGenerateFacade.executeQuery(generator.generateRule(lang, rule));
+        return "yes";
     }
 }
