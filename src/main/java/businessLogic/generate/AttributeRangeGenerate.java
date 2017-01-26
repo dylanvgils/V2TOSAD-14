@@ -10,12 +10,12 @@ import org.stringtemplate.v4.STGroupFile;
  */
 public class AttributeRangeGenerate implements Generate<AttributeRule> {
 
-    public static String AttributeRangeGenerate(AttributeRule rule){
+    public static String AttributeRangeGenerate(String lang, AttributeRule rule){
         AttributeRangeGenerate g = new AttributeRangeGenerate();
-        return g.generateRule(rule);
+        return g.generateRule(lang, rule);
     }
-    public String generateRule(AttributeRule rule){
-        STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource("AttributeRangeRule.stg").getFile());
+    public String generateRule(String lang, AttributeRule rule){
+        STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource(lang+"/AttributeRangeRule.stg").getFile());
         ST templateExample = stGroup.getInstanceOf("templateTrigger");
         templateExample.add("table", rule.getTables().getName());
         templateExample.add("name", "koekje");

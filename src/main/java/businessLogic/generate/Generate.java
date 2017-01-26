@@ -10,5 +10,5 @@ import org.stringtemplate.v4.STGroupFile;
  * Created by Dion on 1/13/2017.
  */
 public interface Generate<T> {
-    String generateRule(T rule);
+    String generateRule(String lang, T rule);
 }
