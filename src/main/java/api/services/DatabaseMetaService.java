@@ -70,7 +70,7 @@ public class DatabaseMetaService {
                 );
             }
 
-            jObject.put(tableName, columnArray);
+            jObject.put("table", columnArray);
         } else {
             status = Status.NOT_FOUND;
             jObject.put("message", String.format("Table with name `%s` does not exists schema `%s`.", tableName, schemaName));
@@ -87,7 +87,8 @@ public class DatabaseMetaService {
 
         ColumnMetaDTO cm = PersistenceDatabaseMetaFacade.getColumn(schemaName, tableName, columnName);
         if (cm != null) {
-            jObject.put(columnName, new JSONObject()
+            jObject.put("column", new JSONObject()
+                .put("column_name", cm.getName())
                 .put("data_type", cm.getDataType())
                 .put("data_length", cm.getDataLength())
                 .put("data_precision", cm.getDataPrecision())
