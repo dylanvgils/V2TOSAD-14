@@ -17,8 +17,11 @@ public class AttributeRangeGenerate implements Generate<AttributeRule> {
     public String generateRule(String lang, AttributeRule rule){
         STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource(lang+"/AttributeRangeRule.stg").getFile());
 
-        String triggerType = "AfterStatement";
+        String triggerType = rule.getTriggerType();
+        System.out.println(triggerType);
         ST templateExample = stGroup.getInstanceOf("templateTrigger"+triggerType);
+
+        templateExample.add("application", "x");
         templateExample.add("table", rule.getTables().getName());
         templateExample.add("name", "koekje");
         templateExample.add("column", rule.getColumns().getName());

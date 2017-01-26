@@ -91,4 +91,8 @@ public abstract class BusinessRule<X> {
     public void setError(FailureHandling error) {
         this.error = error;
     }
+
+    public String getTriggerType() {
+        return triggerType;
+    }
 }

@@ -17,8 +17,10 @@ public class AttributeCompareGenerate implements Generate<AttributeRule> {
     public String generateRule(String lang, AttributeRule rule){
         STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource(lang+"/AttributeRangeRule.stg").getFile());
 
-        String triggerType = "BeforeRow";
+        String triggerType = rule.getTriggerType();
         ST templateExample = stGroup.getInstanceOf("templateTrigger"+triggerType);
+
+        templateExample.add("application", "x");
         templateExample.add("table", rule.getTables().getName());
         templateExample.add("name", "koekje");
         templateExample.add("column", rule.getColumns().getName());

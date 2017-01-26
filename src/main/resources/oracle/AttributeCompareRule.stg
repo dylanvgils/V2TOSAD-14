@@ -1,5 +1,5 @@
-templateTriggerBeforeRow(table, name, column, operator, min, max, error_code, error) ::=<<
-create or replace hiermoetapplicatiekomen_<table>_CNS_ARNG
+templateTriggerBeforeRow(application, table, name, column, operator, min, max, error_code, error) ::=<<
+create or replace <application>_<table>_CNS_ARNG
 before insert or update on <table>
 for each row
   DECLARE
@@ -17,8 +17,8 @@ begin
 
 end;
 >>
-templateTriggerAfterStatement(table, name, column, operator, min, max, error_code, error) ::=<<
-create or replace hiermoetapplicatiekomen_<table>_CNS_ARNG
+templateTriggerAfterStatement(application, table, name, column, operator, min, max, error_code, error) ::=<<
+create or replace <application>_<table>_CNS_ARNG
 after insert or update on <table>
   DECLARE
     c_exception EXCEPTION;
@@ -35,8 +35,8 @@ begin
 
 end;
 >>
-templateTriggerBeforeStatement(table, name, column, operator, min, max, error_code, error) ::=<<
-create or replace hiermoetapplicatiekomen_<table>_CNS_ARNG
+templateTriggerBeforeStatement(application, table, name, column, operator, min, max, error_code, error) ::=<<
+create or replace <application>_<table>_CNS_ARNG
 before insert or update on <table>
   DECLARE
     c_exception EXCEPTION;
