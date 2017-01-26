@@ -32,7 +32,6 @@ public class RuleFacade {
         }
 
         Generate generator = factory.getGenerate(rule.getType().getCode());
-        System.out.println(rule.getType().getCode());
         return generator.generateRule(lang, rule);
     }
 }
