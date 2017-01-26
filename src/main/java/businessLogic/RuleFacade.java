@@ -33,7 +33,7 @@ public class RuleFacade {
         }
 
         Generate generator = factory.getGenerate(rule.getType().getCode());
-        PersistenceGenerateFacade.executeQuery(generator.generateRule(lang, rule));
-        return "yes";
+        //PersistenceGenerateFacade.executeQuery(generator.generateRule(lang, rule));
+        return generator.generateRule(lang, rule);
     }
 }
