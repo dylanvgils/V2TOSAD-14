@@ -24,7 +24,7 @@ public class DatabaseMetaService {
     @GET
     @Path("/schemas")
     public Response getSchemas() {
-        JSONObject jsonObject = new JSONObject();
+        JSONObject jObject = new JSONObject();
 
         JSONArray jsonArray = new JSONArray();
         for (DatabaseSchemaDTO ds : PersistenceDatabaseMetaFacade.getSchemas()) {
@@ -33,31 +33,31 @@ public class DatabaseMetaService {
             );
         }
 
-        jsonObject.put("schemas", jsonArray);
+        jObject.put("schemas", jsonArray);
 
-        return Response.status(Status.OK).entity(jsonObject.toString()).build();
+        return Response.status(Status.OK).entity(jObject.toString()).build();
     }
 
     @GET
     @Path("/schemas/{schemaName}")
     public Response getTables(@PathParam("schemaName") String schemaName) {
-        JSONObject jsonObject = new JSONObject();
+        JSONObject jObject = new JSONObject();
 
         JSONArray tableArray = new JSONArray();
         for (TableMetaDTO tm : PersistenceDatabaseMetaFacade.getTables(schemaName)) {
             tableArray.put(tm.getName());
         }
 
-        jsonObject.put("tables", tableArray);
+        jObject.put("tables", tableArray);
 
-        return Response.status(Status.OK).entity(jsonObject.toString()).build();
+        return Response.status(Status.OK).entity(jObject.toString()).build();
     }
 
     @GET
     @Path("/schemas/{schemaName}/{tableName}")
     public Response getColumns(@PathParam("schemaName") String schemaName, @PathParam("tableName") String tableName) {
         Status status = Status.OK;
-        JSONObject jsonObject = new JSONObject();
+        JSONObject jObject = new JSONObject();
         JSONArray columnArray = new JSONArray();
 
         List<ColumnMetaDTO> columns = PersistenceDatabaseMetaFacade.getColumns(schemaName, tableName);
@@ -72,24 +72,24 @@ public class DatabaseMetaService {
                 );
             }
 
-            jsonObject.put(tableName, columnArray);
+            jObject.put(tableName, columnArray);
         } else {
             status = Status.NOT_FOUND;
-            jsonObject.put("message", String.format("Table with name `%s` does not exists schema `%s`.", tableName, schemaName));
+            jObject.put("message", String.format("Table with name `%s` does not exists schema `%s`.", tableName, schemaName));
         }
 
-        return Response.status(status).entity(jsonObject.toString()).build();
+        return Response.status(status).entity(jObject.toString()).build();
     }
 
     @GET
     @Path("/schemas/{schemaName}/{tableName}/{columnName}")
     public Response getColumn(@PathParam("schemaName") String schemaName, @PathParam("tableName") String tableName, @PathParam("columnName") String columnName) {
         Status status = Status.OK;
-        JSONObject jsonObject = new JSONObject();
+        JSONObject jObject = new JSONObject();
 
         ColumnMetaDTO cm = PersistenceDatabaseMetaFacade.getColumn(schemaName, tableName, columnName);
         if (cm != null) {
-            jsonObject.put(columnName, new JSONObject()
+            jObject.put(columnName, new JSONObject()
                 .put("data_type", cm.getDataType())
                 .put("data_length", cm.getDataLength())
                 .put("data_precision", cm.getDataPrecision())
@@ -97,10 +97,10 @@ public class DatabaseMetaService {
             );
         } else {
             status = Status.NOT_FOUND;
-            jsonObject.put("message", String.format("Column with name `%s` does not exist in table `%s`.", columnName, tableName));
+            jObject.put("message", String.format("Column with name `%s` does not exist in table `%s`.", columnName, tableName));
         }
 
 
-        return Response.status(status).entity(jsonObject.toString()).build();
+        return Response.status(status).entity(jObject.toString()).build();
     }
 }

@@ -11,13 +11,13 @@ import java.util.List;
  */
 public class RuleFacade {
 
-    public static void generateRules(List<Integer> rules){
+    public static void generateRules(String lang, List<Integer> rules){
         for (Integer r: rules) {
-            generateRule(r);
+            generateRule(lang, r);
         }
     }
 
-    public static String generateRule(int ruleID){
+    private static String generateRule(String lang, int ruleID){
         BusinessRule rule;
         GenerateFactory factory = new GenerateFactory();
 
