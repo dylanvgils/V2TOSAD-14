@@ -2,16 +2,12 @@ package api.services;
 
 
 import businessLogic.RuleFacade;
-import businessLogic.domain.*;
-import jdk.nashorn.internal.parser.JSONParser;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.List;
 
 @Path("/hello")
 public class HelloWorldService {
@@ -19,7 +15,7 @@ public class HelloWorldService {
     @Path("/id/{id}")
     @Produces("text/plain")
     public Response sayHello(@PathParam("id") int id) {
-        String result = RuleFacade.generateRule(id);
+        String result = RuleFacade.generateRule("oracle", id);
 
         return Response.status(200).entity(result == null ? "NOPE" : result).build();
     }
