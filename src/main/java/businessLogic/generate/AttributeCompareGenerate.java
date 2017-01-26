@@ -20,7 +20,6 @@ public class AttributeCompareGenerate implements Generate<AttributeRule> {
         String triggerType = "BeforeRow";
         ST templateExample = stGroup.getInstanceOf("templateTrigger"+triggerType);
         templateExample.add("table", rule.getTables().getName());
-        templateExample.add("when", "insert");
         templateExample.add("name", "koekje");
         templateExample.add("column", rule.getColumns().getName());
         templateExample.add("operator", rule.getOperator());
