@@ -7,8 +7,8 @@ import java.util.List;
  */
 public class AttributeRule extends BusinessRule {
 
-    public AttributeRule(int ruleID, String name, String operator, BusinessRuleType type, FailureHandling error) {
-        super(ruleID, name, operator, type, error);
+    public AttributeRule(int ruleID, String name, String operator, String triggerType, BusinessRuleType type, FailureHandling error) {
+        super(ruleID, name, operator, triggerType, type, error);
     }
 
     @Override
