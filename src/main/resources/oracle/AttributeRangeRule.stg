@@ -3,10 +3,48 @@ templateRange(table, name, column, operator, min, max) ::=<<
     CONSTRAINT hiermoetapplicatiekomen_<table>_CNS_ARNG CHECK (<column> <operator> <min> and <max>)
 >>
 
-templateTrigger(table, name, column, operator, min, max, error_code, error) ::=<<
+templateTriggerBeforeRow(table, when, name, column, operator, min, max, error_code, error) ::=<<
 create or replace hiermoetapplicatiekomen_<table>_CNS_ARNG
-before insert on <table>
+before <when> on <table>
 for each row
+  DECLARE
+    c_exception EXCEPTION;
+    l_passed boolean := false;
+begin
+  if not(:new.<column> <operator> <min> and <max>) THEN
+    RAISE c_exception;
+  END IF;
+
+
+  EXCEPTION
+  WHEN c_exception THEN
+    RAISE_APPLICATION_ERROR (<error_code>, '<error>');
+
+end;
+>>
+
+templateTriggerBeforeStatement(table, when, name, column, operator, min, max, error_code, error) ::=<<
+create or replace hiermoetapplicatiekomen_<table>_CNS_ARNG
+before <when> on <table>
+  DECLARE
+    c_exception EXCEPTION;
+    l_passed boolean := false;
+begin
+  if not(:new.<column> <operator> <min> and <max>) THEN
+    RAISE c_exception;
+  END IF;
+
+
+  EXCEPTION
+  WHEN c_exception THEN
+    RAISE_APPLICATION_ERROR (<error_code>, '<error>');
+
+end;
+>>
+
+templateTriggerAfterStatement(table, when, name, column, operator, min, max, error_code, error) ::=<<
+create or replace hiermoetapplicatiekomen_<table>_CNS_ARNG
+after <when> on <table>
   DECLARE
     c_exception EXCEPTION;
     l_passed boolean := false;
