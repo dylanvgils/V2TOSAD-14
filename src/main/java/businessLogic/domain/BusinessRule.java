@@ -58,7 +58,7 @@ public abstract class BusinessRule<X> {
 
     public String getValueByKey(String key){
         for (Attribute a : attributes) {
-            if(a.getKey() == key){
+            if(a.getKey().equalsIgnoreCase(key)){
                 return a.getValue();
             }
         }

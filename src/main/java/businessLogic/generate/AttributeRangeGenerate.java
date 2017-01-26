@@ -15,7 +15,7 @@ public class AttributeRangeGenerate implements Generate<AttributeRule> {
         return g.generateRule(lang, rule);
     }
     public String generateRule(String lang, AttributeRule rule){
-        STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource(lang+"/AttributeRangeRule.stg").getFile());
+        STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource(lang.toLowerCase() + "/AttributeRangeRule.stg").getFile());
 
         String triggerType = rule.getTriggerType();
         System.out.println(triggerType);
