@@ -6,11 +6,16 @@ import persistence.domain.*;
 import java.util.List;
 
 public class PersistenceDomainFacade {
+    private static final BusinessRuleDAO businessRule = new BusinessRuleImpl();
     private static final BusinessRuleTypeDAO businessRuleType = new BusinessRuleTypeImpl();
     private static final FailureHandelingDAO failureHandeling = new FailureHandelingImpl();
     private static final AttributeDAO attribute = new AttributeImpl();
     private static final ColumnDAO column = new ColumnImpl();
     private static final TableDAO table = new TableImpl();
+
+    public static BusinessRule getBusinessRule(int ruleID) {
+        return businessRule.getBusinessRuleByRuleID(ruleID);
+    }
 
     public static BusinessRuleType getBusinessRuleType(int typeID) {
         return businessRuleType.getBusinessRuleTypeByID(typeID);

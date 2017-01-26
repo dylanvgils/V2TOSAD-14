@@ -20,7 +20,7 @@ public class BusinessRuleImpl extends BaseDAO implements BusinessRuleDAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                BusinessRuleType ruleType = PersistenceDomainFacade.getBusinessRuleType(rs.getInt("rule_id"));
+                BusinessRuleType ruleType = PersistenceDomainFacade.getBusinessRuleType(rs.getInt("type_id"));
 
                 switch (ruleType.getCode()) {
                     case "ARNG":

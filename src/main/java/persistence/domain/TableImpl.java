@@ -16,13 +16,13 @@ public class TableImpl extends BaseDAO implements TableDAO {
         List<Table> result = new ArrayList<>();
 
         try (Connection conn = getConnection()) {
-            PreparedStatement stmt = conn.prepareStatement("select * from view_table where table_id = ?");
+            PreparedStatement stmt = conn.prepareStatement("select * from view_table where rule_id = ?");
             stmt.setInt(1, ruleID);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 result.add(new Table(
-                    rs.getString("name")
+                    rs.getString("table_name")
                 ));
             }
         } catch (SQLException e) {

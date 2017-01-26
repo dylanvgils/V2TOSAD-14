@@ -1,5 +1,6 @@
 package businessLogic.domain;
 
+import persistence.PersistenceDomainFacade;
 import persistence.domain.AttributeImpl;
 
 import java.util.ArrayList;
@@ -19,21 +20,8 @@ public abstract class BusinessRule<X> {
     protected List<Column> columns = new ArrayList<>();
     protected List<Table> tables = new ArrayList<>();
 
-    private static List<BusinessRule> rules = new ArrayList<>();
-
-    protected static void addRule(BusinessRule rule){
-        rules.add(rule);
-    }
-
-    public static List<BusinessRule> getRules(){
-        return rules;
-    }
-
-    public static BusinessRule getRule(int id) {
-        for (BusinessRule r : rules) {
-            if (r.getRuleID() == id) return r;
-        }
-        return null;
+    public static BusinessRule getRule(int ruleID) {
+        return PersistenceDomainFacade.getBusinessRule(ruleID);
     }
 
 
