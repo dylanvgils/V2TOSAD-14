@@ -10,26 +10,21 @@ import org.stringtemplate.v4.STGroupFile;
  */
 public class AttributeRangeGenerate implements Generate<AttributeRule> {
 
-    public static String AttributeRangeGenerate(String lang, AttributeRule rule){
-        AttributeRangeGenerate g = new AttributeRangeGenerate();
-        return g.generateRule(lang, rule);
-    }
     public String generateRule(String lang, AttributeRule rule){
         STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource(lang.toLowerCase() + "/AttributeRangeRule.stg").getFile());
 
         String triggerType = rule.getTriggerType();
         System.out.println(triggerType);
-        ST templateExample = stGroup.getInstanceOf("templateTrigger"+triggerType);
+        ST templateAttributeRange = stGroup.getInstanceOf("templateTrigger"+triggerType);
 
-        templateExample.add("application", "x");
-        templateExample.add("table", rule.getTables().getName());
-        templateExample.add("name", "koekje");
-        templateExample.add("column", rule.getColumns().getName());
-        templateExample.add("operator", rule.getOperator());
-        templateExample.add("min", rule.getValueByKey("min"));
-        templateExample.add("max", rule.getValueByKey("max"));
-        templateExample.add("error_code", rule.getError().getErrorCode());
-        templateExample.add("error", rule.getError().getMessage());
-        return templateExample.render();
+        templateAttributeRange.add("application", "x");
+        templateAttributeRange.add("table", rule.getTables().getName());
+        templateAttributeRange.add("column", rule.getColumns().getName());
+        templateAttributeRange.add("operator", rule.getOperator());
+        templateAttributeRange.add("min", rule.getValueByKey("min"));
+        templateAttributeRange.add("max", rule.getValueByKey("max"));
+        templateAttributeRange.add("error_code", rule.getError().getErrorCode());
+        templateAttributeRange.add("error", rule.getError().getMessage());
+        return templateAttributeRange.render();
     }
 }

@@ -8,8 +8,15 @@ public class GenerateFactory {
         if(generateType == null){
             return null;
         }
+        System.out.println(generateType);
         if(generateType.equalsIgnoreCase("ARNG")){
             return new AttributeRangeGenerate();
+        }else if(generateType.equalsIgnoreCase("ACMP")) {
+            return new AttributeCompareGenerate();
+        }else if(generateType.equalsIgnoreCase("TCMP")){
+            return new TupleCompareGenerate();
+        }else if(generateType.equalsIgnoreCase("ICMP")){
+            return new InterEntityCompareGenerate();
         }
 
         return null;
