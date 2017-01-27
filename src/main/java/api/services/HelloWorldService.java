@@ -12,15 +12,6 @@ import javax.ws.rs.core.Response;
 @Path("/hello")
 public class HelloWorldService {
     @GET
-    @Path("/id/{id}")
-    @Produces("text/plain")
-    public Response sayHello(@PathParam("id") int id) {
-        String result = RuleFacade.generateRule("oracle", id);
-
-        return Response.status(200).entity(result == null ? "NOPE" : result).build();
-    }
-
-    @GET
     @Path("{name}")
     @Produces("application/json")
     public Response sayHello(@PathParam("name") String name) {
