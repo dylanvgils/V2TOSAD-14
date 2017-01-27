@@ -16,6 +16,8 @@ public class AttributeCompareGenerate implements Generate<AttributeRule> {
         String triggerType = rule.getTriggerType();
         ST templateAttributeCompare = stGroup.getInstanceOf("templateTrigger"+triggerType);
 
+        templateAttributeCompare.add("ruleID", rule.getRuleID());
+        templateAttributeCompare.add("ruleType", rule.getBusinessRuleType().getCode());
         templateAttributeCompare.add("application", "x");
         templateAttributeCompare.add("table", rule.getTables().getName());
         templateAttributeCompare.add("column", rule.getColumns().getName());

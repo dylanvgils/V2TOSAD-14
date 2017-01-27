@@ -1,5 +1,5 @@
-templateTriggerBeforeRow(application, table, column, operator, min, max, error_code, error) ::=<<
-create or replace trigger <application>_<table>_CNS_ARNG
+templateTriggerBeforeRow(ruleID, ruleType, application, table, column, operator, min, max, error_code, error) ::=<<
+create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
 before insert or update on <table>
 for each row
   DECLARE
@@ -17,8 +17,8 @@ begin
 
 end;
 >>
-templateTriggerAfterStatement(application, table, column, operator, min, max, error_code, error) ::=<<
-create or replace trigger <application>_<table>_CNS_ARNG
+templateTriggerAfterStatement(ruleID, ruleType, application, table, column, operator, min, max, error_code, error) ::=<<
+create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
 after insert or update on <table>
   DECLARE
     c_exception EXCEPTION;
@@ -35,8 +35,8 @@ begin
 
 end;
 >>
-templateTriggerBeforeStatement(application, table, column, operator, min, max, error_code, error) ::=<<
-create or replace trigger <application>_<table>_CNS_ARNG
+templateTriggerBeforeStatement(ruleID, ruleType, application, table, column, operator, min, max, error_code, error) ::=<<
+create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
 before insert or update on <table>
   DECLARE
     c_exception EXCEPTION;

@@ -1,5 +1,5 @@
-templateTriggerBeforeRow(application, table, column, columnOther, operator, error_code, error) ::=<<
-create or replace trigger <application>_<table>_CNS_ARNG
+templateTriggerBeforeRow(ruleID, ruleType, application, table, column, columnOther, operator, error_code, error) ::=<<
+create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
 before insert or update on <table>
 for each row
   DECLARE

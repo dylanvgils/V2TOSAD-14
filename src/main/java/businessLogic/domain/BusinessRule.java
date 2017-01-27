@@ -95,4 +95,8 @@ public abstract class BusinessRule<X> {
     public String getTriggerType() {
         return triggerType;
     }
+
+    public BusinessRuleType getBusinessRuleType(){
+        return type;
+    }
 }

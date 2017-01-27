@@ -14,13 +14,14 @@ public class AttributeRangeGenerate implements Generate<AttributeRule> {
         STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource(lang.toLowerCase() + "/AttributeRangeRule.stg").getFile());
 
         String triggerType = rule.getTriggerType();
-        System.out.println(triggerType);
         ST templateAttributeRange = stGroup.getInstanceOf("templateTrigger"+triggerType);
 
+        templateAttributeRange.add("ruleID", rule.getRuleID());
+        templateAttributeRange.add("ruleType", rule.getBusinessRuleType().getCode());
         templateAttributeRange.add("application", "x");
         templateAttributeRange.add("table", rule.getTables().getName());
         templateAttributeRange.add("column", rule.getColumns().getName());
-        templateAttributeRange.add("operator", rule.getOperator());
+        templateAttributeRange.add("operator", rule.getOperator().toUpperCase());
         templateAttributeRange.add("min", rule.getValueByKey("min"));
         templateAttributeRange.add("max", rule.getValueByKey("max"));
         templateAttributeRange.add("error_code", rule.getError().getErrorCode());
