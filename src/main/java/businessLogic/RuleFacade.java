@@ -12,13 +12,17 @@ import java.util.List;
  */
 public class RuleFacade {
 
-    public static void generateRules(String lang, List<Integer> rules){
+    public static boolean generateRules(String lang, List<Integer> rules){
+        boolean result = true;
+
         for (Integer r: rules) {
-            generateRule(lang, r);
+            result = result && generateRule(lang, r);
         }
+
+        return result;
     }
 
-    public static String generateRule(String lang, int ruleID){
+    public static boolean generateRule(String lang, int ruleID){
         BusinessRule rule;
         GenerateFactory factory = new GenerateFactory();
 
@@ -29,14 +33,11 @@ public class RuleFacade {
             rule.setTables(Table.getTables(ruleID));
         } catch (NullPointerException e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
 
         Generate generator = factory.getGenerate(rule.getType().getCode());
-
-        String test = generator.generateRule(lang, rule);
-
-        PersistenceGenerateFacade.executeQuery(ruleID, lang, test);
-        return test;
+        PersistenceGenerateFacade.executeQuery(ruleID, lang, generator.generateRule(lang, rule));
+        return true;
     }
 }

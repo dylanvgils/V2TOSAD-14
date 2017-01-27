@@ -39,8 +39,12 @@ public class GeneratorService {
             res.put("message", "Unable to parse the provided JSON. Check your JSON syntax.");
         }
 
-        RuleFacade.generateRules(lang, rules);
-        res.put("message", "Rules generated succesfully!");
+        if (RuleFacade.generateRules(lang, rules)){
+            res.put("message", "Rules generated succesfully!");
+        } else {
+            status = Status.INTERNAL_SERVER_ERROR;
+            res.put("message", "Error encountered while generating the business rule(s). Please check your rule specification.");
+        }
 
         return Response.status(status).entity(res.toString()).build();
     }
