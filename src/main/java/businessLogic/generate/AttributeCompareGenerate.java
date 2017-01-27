@@ -10,24 +10,19 @@ import org.stringtemplate.v4.STGroupFile;
  */
 public class AttributeCompareGenerate implements Generate<AttributeRule> {
 
-    public static String AttributeCompareGenerate(String lang, AttributeRule rule){
-        AttributeCompareGenerate g = new AttributeCompareGenerate();
-        return g.generateRule(lang, rule);
-    }
     public String generateRule(String lang, AttributeRule rule){
-        STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource(lang.toLowerCase() + "/AttributeRangeRule.stg").getFile());
+        STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource(lang.toLowerCase() + "/AttributeCompareRule.stg").getFile());
 
         String triggerType = rule.getTriggerType();
-        ST templateExample = stGroup.getInstanceOf("templateTrigger"+triggerType);
+        ST templateAttributeCompare = stGroup.getInstanceOf("templateTrigger"+triggerType);
 
-        templateExample.add("application", "x");
-        templateExample.add("table", rule.getTables().getName());
-        templateExample.add("name", "koekje");
-        templateExample.add("column", rule.getColumns().getName());
-        templateExample.add("operator", rule.getOperator());
-        templateExample.add("max", rule.getValueByKey("max"));
-        templateExample.add("error_code", rule.getError().getErrorCode());
-        templateExample.add("error", rule.getError().getMessage());
-        return templateExample.render();
+        templateAttributeCompare.add("application", "x");
+        templateAttributeCompare.add("table", rule.getTables().getName());
+        templateAttributeCompare.add("column", rule.getColumns().getName());
+        templateAttributeCompare.add("operator", rule.getOperator());
+        templateAttributeCompare.add("max", rule.getValueByKey("max"));
+        templateAttributeCompare.add("error_code", rule.getError().getErrorCode());
+        templateAttributeCompare.add("error", rule.getError().getMessage());
+        return templateAttributeCompare.render();
     }
 }

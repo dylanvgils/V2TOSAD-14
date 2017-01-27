@@ -1,4 +1,4 @@
-templateTriggerBeforeRow(application, table, name, column, operator, min, max, error_code, error) ::=<<
+templateTriggerBeforeRow(application, table, column, operator, min, max, error_code, error) ::=<<
 create or replace trigger <application>_<table>_CNS_ARNG
 before insert or update on <table>
 for each row
@@ -17,7 +17,7 @@ begin
 
 end;
 >>
-templateTriggerAfterStatement(application, table, name, column, operator, min, max, error_code, error) ::=<<
+templateTriggerAfterStatement(application, table, column, operator, min, max, error_code, error) ::=<<
 create or replace trigger <application>_<table>_CNS_ARNG
 after insert or update on <table>
   DECLARE
@@ -35,7 +35,7 @@ begin
 
 end;
 >>
-templateTriggerBeforeStatement(application, table, name, column, operator, min, max, error_code, error) ::=<<
+templateTriggerBeforeStatement(application, table, column, operator, min, max, error_code, error) ::=<<
 create or replace trigger <application>_<table>_CNS_ARNG
 before insert or update on <table>
   DECLARE

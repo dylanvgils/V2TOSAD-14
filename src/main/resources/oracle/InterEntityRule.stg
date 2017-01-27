@@ -1,0 +1,25 @@
+templateTriggerBeforeRow(application, table, column, columnOther, operator, error_code, error) ::=<<
+create or replace trigger <application>_<table>_CNS_ARNG
+before insert or update on <table>
+for each row
+  DECLARE
+    c_exception EXCEPTION;
+    l_passed boolean := false;
+    cursor lc_ord is select <tableOther>.<columnOther> from <table> where <table>.<table> = p_lev_row.new_ord_id;
+
+    l_orderdatum orders.registratiedatum%type;
+begin
+    open lc_ord;
+    fetch lc_ord into l_valueOther;
+    close lc_ord;
+  if not(:new.<column> <operator> l_valueOther) THEN
+    RAISE c_exception;
+  END IF;
+
+
+  EXCEPTION
+  WHEN c_exception THEN
+    RAISE_APPLICATION_ERROR (<error_code>, '<error>');
+
+end;
+>>
