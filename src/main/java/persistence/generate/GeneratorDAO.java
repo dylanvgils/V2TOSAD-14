@@ -2,5 +2,5 @@ package persistence.generate;
 
 
 public interface GeneratorDAO {
-    boolean executeQuery(String sql);
+    void executeQuery(String sql);
 }
