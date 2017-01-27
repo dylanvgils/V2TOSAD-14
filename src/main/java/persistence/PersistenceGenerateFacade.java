@@ -10,12 +10,12 @@ public class PersistenceGenerateFacade {
     private static final GeneratorDAO generator = new GeneratorImpl();
     private static final GeneratedRuleDAO generatedRule = new GeneratedRuleImpl();
 
-    public static boolean executeQuery(int ruleID, String lang, String sql) {
+    public static void executeQuery(int ruleID, String lang, String sql) {
         generator.executeQuery(sql);
-        return logGeneratedRule(ruleID, lang, sql);
+        logGeneratedRule(ruleID, lang, sql);
     }
 
-    public static boolean logGeneratedRule(int ruleID, String lang,  String sql) {
-        return generatedRule.insert(ruleID, lang, sql);
+    public static void logGeneratedRule(int ruleID, String lang,  String sql) {
+        generatedRule.insert(ruleID, lang, sql);
     }
 }
