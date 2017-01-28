@@ -1,0 +1,12 @@
+{
+  "equals":           "=",
+  "greaterorequals":  "=>",
+  "lessorequals":     "=<",
+  "notequals":        "!=",
+  "between":          "between",
+  "notbetween":       "not between",
+  "greater":          ">",
+  "less":             "<",
+  "in":               "in",
+  "notin":             "not in"
+}
