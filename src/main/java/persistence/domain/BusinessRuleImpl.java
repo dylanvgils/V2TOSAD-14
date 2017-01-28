@@ -3,6 +3,7 @@ package persistence.domain;
 import businessLogic.domain.AttributeRule;
 import businessLogic.domain.BusinessRule;
 import businessLogic.domain.BusinessRuleType;
+import businessLogic.domain.TupleRule;
 import persistence.BaseDAO;
 import persistence.PersistenceDomainFacade;
 
@@ -21,7 +22,6 @@ public class BusinessRuleImpl extends BaseDAO implements BusinessRuleDAO {
 
             if (rs.next()) {
                 BusinessRuleType ruleType = PersistenceDomainFacade.getBusinessRuleType(rs.getInt("type_id"));
-
                 switch (ruleType.getCode()) {
                     case "ARNG":
                     case "ACMP":
@@ -34,6 +34,15 @@ public class BusinessRuleImpl extends BaseDAO implements BusinessRuleDAO {
                             rs.getString("trigger_type"),
                             ruleType,
                             PersistenceDomainFacade.getFailureHandeling(rs.getInt("failure_id"))
+                        );
+                    case "TCMP":
+                        return new TupleRule(
+                                rs.getInt("rule_id"),
+                                rs.getString("name"),
+                                rs.getString("operator"),
+                                rs.getString("trigger_type"),
+                                ruleType,
+                                PersistenceDomainFacade.getFailureHandeling(rs.getInt("failure_id"))
                         );
                 }
             }

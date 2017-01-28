@@ -11,7 +11,6 @@ import java.util.List;
 public class Column {
     private int ruleID;
     private String name;
-    private String type;
     private static List<Column> columns = new ArrayList<>();
 
     public static List<Column> getColumns(int ruleID){
@@ -19,9 +18,8 @@ public class Column {
         return columns;
     }
 
-    public Column(String name, String type) {
+    public Column(String name) {
         this.name = name;
-        this.type = type;
     }
 
     public int getRuleID() {

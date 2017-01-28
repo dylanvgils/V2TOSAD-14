@@ -16,10 +16,12 @@ public class TupleCompareGenerate implements Generate<TupleRule> {
 
         String triggerType = rule.getTriggerType();
         ST templateTupleCompare = stGroup.getInstanceOf("templateTrigger"+triggerType);
-        templateTupleCompare.add("application", "application");
-        templateTupleCompare.add("table", rule.getTables());
-        templateTupleCompare.add("column", rule.getColumns().get(0));
-        templateTupleCompare.add("columnOther", rule.getColumns().get(1));
+        templateTupleCompare.add("ruleID", rule.getRuleID());
+        templateTupleCompare.add("ruleType", rule.getBusinessRuleType().getCode());
+        templateTupleCompare.add("application", "x");
+        templateTupleCompare.add("table", rule.getTables().getName());
+        templateTupleCompare.add("column", rule.getColumns().get(0).getName());
+        templateTupleCompare.add("columnOther", rule.getColumns().get(1).getName());
         templateTupleCompare.add("operator", rule.getOperator());
         templateTupleCompare.add("error_code", rule.getError().getErrorCode());
         templateTupleCompare.add("error", rule.getError().getMessage());

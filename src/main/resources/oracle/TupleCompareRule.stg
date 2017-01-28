@@ -1,7 +1,43 @@
-templateTriggerBeforeRow(ruleID, application, table, column, columnOther, operator, error_code, error) ::=<<
-create or replace trigger <application>_<table>_CNS_ARNG_<ruleID>
+templateTriggerBeforeRow(ruleID, ruleType, application, table, column, columnOther, operator, error_code, error) ::=<<
+create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
 before insert or update on <table>
 for each row
+  DECLARE
+    c_exception EXCEPTION;
+    l_passed boolean := false;
+begin
+  if not(:new.<column> <operator> :new.<columnOther>) THEN
+    RAISE c_exception;
+  END IF;
+
+
+  EXCEPTION
+  WHEN c_exception THEN
+    RAISE_APPLICATION_ERROR (<error_code>, '<error>');
+
+end;
+>>
+templateTriggerBeforeStatement(ruleID, ruleType, application, table, column, columnOther, operator, error_code, error) ::=<<
+create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
+before insert or update on <table>
+  DECLARE
+    c_exception EXCEPTION;
+    l_passed boolean := false;
+begin
+  if not(:new.<column> <operator> :new.<columnOther>) THEN
+    RAISE c_exception;
+  END IF;
+
+
+  EXCEPTION
+  WHEN c_exception THEN
+    RAISE_APPLICATION_ERROR (<error_code>, '<error>');
+
+end;
+>>
+templateTriggerAfterStatement(ruleID, ruleType, application, table, column, columnOther, operator, error_code, error) ::=<<
+create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
+after insert or update on <table>
   DECLARE
     c_exception EXCEPTION;
     l_passed boolean := false;

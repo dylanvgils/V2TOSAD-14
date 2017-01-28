@@ -22,8 +22,7 @@ public class ColumnImpl extends BaseDAO implements ColumnDAO {
 
             while (rs.next()) {
                 result.add(new Column(
-                    rs.getString("name"),
-                    rs.getString("type")
+                    rs.getString("name")
                 ));
             }
         } catch (SQLException e) {
