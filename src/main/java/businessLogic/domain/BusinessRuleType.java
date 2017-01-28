@@ -4,7 +4,6 @@ package businessLogic.domain;
  * Created by Dion on 1/13/2017.
  */
 public class BusinessRuleType {
-    private int ruleID;
     private String name;
     private String code;
 
@@ -19,9 +18,5 @@ public class BusinessRuleType {
 
     public String getCode() {
         return code;
-    }
-
-    public int getRuleID() {
-        return ruleID;
     }
 }

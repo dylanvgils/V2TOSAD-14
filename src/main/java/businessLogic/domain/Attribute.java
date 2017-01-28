@@ -9,22 +9,18 @@ import java.util.List;
  * Created by Dion on 1/13/2017.
  */
 public class Attribute {
-    private int ruleID;
     private String key;
     private String value;
-    private static List<Attribute> attibutes = new ArrayList<>();
+    private static List<Attribute> attributes = new ArrayList<>();
 
     public static List<Attribute> getAttributes(int ruleID){
-        attibutes.addAll(PersistenceDomainFacade.getAttributes(ruleID));
-        return attibutes;
+        attributes.removeAll(attributes);
+        attributes.addAll(PersistenceDomainFacade.getAttributes(ruleID));
+        return attributes;
     }
 
     public static void addAttribute(Attribute attribute){
-        attibutes.add(attribute);
-    }
-
-    public int getRuleID() {
-        return ruleID;
+        attributes.add(attribute);
     }
 
     public Attribute(String key, String value) {

@@ -9,11 +9,11 @@ import java.util.List;
  * Created by Dion on 1/13/2017.
  */
 public class Table {
-    private int ruleID;
     private String name;
-    private static List<Table> tables = new ArrayList<Table>();
+    private static List<Table> tables = new ArrayList<>();
 
     public static List<Table> getTables(int ruleID){
+        tables.removeAll(tables);
         tables.addAll(PersistenceDomainFacade.getTables(ruleID));
         return tables;
     }
@@ -22,21 +22,11 @@ public class Table {
         tables.add(table);
     }
 
-    public Table(int ruleID, String name) {
-        this.ruleID = ruleID;
-        this.name = name;
-    }
-
     public Table(String name) {
-        this.ruleID = ruleID;
         this.name = name;
     }
 
     public String getName() {
         return name;
-    }
-
-    public int getRuleID() {
-        return ruleID;
     }
 }
