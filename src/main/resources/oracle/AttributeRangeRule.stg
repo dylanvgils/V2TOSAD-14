@@ -13,7 +13,7 @@ begin
 
   EXCEPTION
   WHEN c_exception THEN
-    RAISE_APPLICATION_ERROR (<error_code>, '<error>');
+    RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
 
 end;
 >>
@@ -32,7 +32,7 @@ begin
 
   EXCEPTION
   WHEN c_exception THEN
-    RAISE_APPLICATION_ERROR (<error_code>, '<error>');
+    RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
 
 end;
 >>
@@ -51,7 +51,7 @@ begin
 
   EXCEPTION
   WHEN c_exception THEN
-    RAISE_APPLICATION_ERROR (<error_code>, '<error>');
+    RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
 
 end;
 >>
