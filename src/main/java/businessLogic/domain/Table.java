@@ -13,7 +13,7 @@ public class Table {
     private static List<Table> tables = new ArrayList<>();
 
     public static List<Table> getTables(int ruleID){
-        tables.removeAll(tables);
+        tables.clear();
         tables.addAll(PersistenceDomainFacade.getTables(ruleID));
         return tables;
     }

@@ -13,7 +13,7 @@ public class Column {
     private static List<Column> columns = new ArrayList<>();
 
     public static List<Column> getColumns(int ruleID){
-        columns.removeAll(columns);
+        columns.clear();
         columns.addAll(PersistenceDomainFacade.getColumns(ruleID));
         return columns;
     }

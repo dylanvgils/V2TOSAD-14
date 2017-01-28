@@ -14,7 +14,7 @@ public class Attribute {
     private static List<Attribute> attributes = new ArrayList<>();
 
     public static List<Attribute> getAttributes(int ruleID){
-        attributes.removeAll(attributes);
+        attributes.clear();
         attributes.addAll(PersistenceDomainFacade.getAttributes(ruleID));
         return attributes;
     }
