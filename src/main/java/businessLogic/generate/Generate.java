@@ -20,6 +20,6 @@ public abstract class Generate<T> {
         return jObject.getString(operator.toLowerCase());
     }
 
-    abstract String generateRule(String lang, T rule);
+    public abstract String generateRule(String lang, T rule);
 
 }
