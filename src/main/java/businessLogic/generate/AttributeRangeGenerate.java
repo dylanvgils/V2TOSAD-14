@@ -8,7 +8,7 @@ import org.stringtemplate.v4.STGroupFile;
 /**
  * Created by Dion on 1/22/2017.
  */
-public class AttributeRangeGenerate implements Generate<AttributeRule> {
+public class AttributeRangeGenerate extends Generate<AttributeRule> {
 
     public String generateRule(String lang, AttributeRule rule){
         STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource(lang.toLowerCase() + "/AttributeRangeRule.stg").getFile());

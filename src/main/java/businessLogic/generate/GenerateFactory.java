@@ -13,6 +13,8 @@ public class GenerateFactory {
             return new AttributeRangeGenerate();
         }else if(generateType.equalsIgnoreCase("ACMP")) {
             return new AttributeCompareGenerate();
+        }else if(generateType.equalsIgnoreCase("ALIS")){
+            return new AttributeListGenerate();
         }else if(generateType.equalsIgnoreCase("TCMP")){
             return new TupleCompareGenerate();
         }else if(generateType.equalsIgnoreCase("ICMP")){

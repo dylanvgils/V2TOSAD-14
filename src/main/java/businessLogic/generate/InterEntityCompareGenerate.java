@@ -9,7 +9,7 @@ import org.stringtemplate.v4.STGroupFile;
 /**
  * Created by Dion on 1/27/2017.
  */
-public class InterEntityCompareGenerate implements Generate<InterEntityRule> {
+public class InterEntityCompareGenerate extends Generate<InterEntityRule> {
 
     public String generateRule(String lang, InterEntityRule rule){
         STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource(lang.toLowerCase() + "/TupleCompareRule.stg").getFile());

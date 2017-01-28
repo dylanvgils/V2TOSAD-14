@@ -9,7 +9,7 @@ import org.stringtemplate.v4.STGroupFile;
 /**
  * Created by Dion on 1/27/2017.
  */
-public class TupleCompareGenerate implements Generate<TupleRule> {
+public class TupleCompareGenerate extends Generate<TupleRule> {
 
     public String generateRule(String lang, TupleRule rule){
         STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource(lang.toLowerCase() + "/TupleCompareRule.stg").getFile());
