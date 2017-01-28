@@ -28,7 +28,11 @@ public class RuleFacade {
 
         try {
             rule = BusinessRule.getRule(ruleID);
-            rule.setAttributes(Attribute.getAttributes(ruleID));
+
+            if (rule.getType().getCode().startsWith("A")) {
+                rule.setAttributes(Attribute.getAttributes(ruleID));
+            }
+
             rule.setColumns(Column.getColumns(ruleID));
             rule.setTables(Table.getTables(ruleID));
         } catch (NullPointerException e) {

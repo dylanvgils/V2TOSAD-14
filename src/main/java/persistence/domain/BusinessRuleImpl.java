@@ -1,9 +1,6 @@
 package persistence.domain;
 
-import businessLogic.domain.AttributeRule;
-import businessLogic.domain.BusinessRule;
-import businessLogic.domain.BusinessRuleType;
-import businessLogic.domain.TupleRule;
+import businessLogic.domain.*;
 import persistence.BaseDAO;
 import persistence.PersistenceDomainFacade;
 
@@ -37,12 +34,21 @@ public class BusinessRuleImpl extends BaseDAO implements BusinessRuleDAO {
                         );
                     case "TCMP":
                         return new TupleRule(
-                                rs.getInt("rule_id"),
-                                rs.getString("name"),
-                                rs.getString("operator"),
-                                rs.getString("trigger_type"),
-                                ruleType,
-                                PersistenceDomainFacade.getFailureHandeling(rs.getInt("failure_id"))
+                            rs.getInt("rule_id"),
+                            rs.getString("name"),
+                            rs.getString("operator"),
+                            rs.getString("trigger_type"),
+                            ruleType,
+                            PersistenceDomainFacade.getFailureHandeling(rs.getInt("failure_id"))
+                        );
+                    case "ICMP":
+                        return new InterEntityRule(
+                            rs.getInt("rule_id"),
+                            rs.getString("name"),
+                            rs.getString("operator"),
+                            rs.getString("trigger_type"),
+                            ruleType,
+                            PersistenceDomainFacade.getFailureHandeling(rs.getInt("failure_id"))
                         );
                 }
             }
