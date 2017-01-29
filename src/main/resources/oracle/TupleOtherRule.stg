@@ -1,0 +1,49 @@
+templateTriggerBeforeRow() ::=<<
+create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
+before insert or update on <table>
+for each row
+  DECLARE
+    c_exception EXCEPTION;
+    l_passed boolean := false;
+begin
+  NIET AF
+
+
+  EXCEPTION
+  WHEN c_exception THEN
+    RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
+
+end;
+>>
+templateTriggerBeforeStatement() ::=<<
+create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
+before insert or update on <table>
+  DECLARE
+    c_exception EXCEPTION;
+    l_passed boolean := false;
+begin
+  NIET AF
+
+
+  EXCEPTION
+  WHEN c_exception THEN
+    RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
+
+end;
+>>
+templateTriggerAfterStatement() ::=<<
+create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
+after insert or update on <table>
+  DECLARE
+    c_exception EXCEPTION;
+    l_passed boolean := false;
+begin
+  NIET AF
+
+
+  EXCEPTION
+  WHEN c_exception THEN
+    RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
+
+end;
+>>
