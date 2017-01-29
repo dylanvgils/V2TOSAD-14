@@ -100,4 +100,8 @@ public abstract class BusinessRule<X> {
     public BusinessRuleType getBusinessRuleType(){
         return type;
     }
+
+    public String getApplication(){
+        return application;
+    }
 }

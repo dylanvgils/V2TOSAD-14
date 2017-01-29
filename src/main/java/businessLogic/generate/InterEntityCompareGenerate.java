@@ -18,7 +18,7 @@ public class InterEntityCompareGenerate extends Generate<InterEntityRule> {
         ST templateInterEntityCompare = stGroup.getInstanceOf("templateTrigger"+triggerType);
         templateInterEntityCompare.add("ruleID", rule.getRuleID());
         templateInterEntityCompare.add("ruleType", rule.getBusinessRuleType().getCode());
-        templateInterEntityCompare.add("application", "x");
+        templateInterEntityCompare.add("application", rule.getApplication());
         templateInterEntityCompare.add("table", rule.getTables().get(0).getName());
         templateInterEntityCompare.add("table", rule.getTables().get(1).getName());
         templateInterEntityCompare.add("column", rule.getColumns().get(0).getName());

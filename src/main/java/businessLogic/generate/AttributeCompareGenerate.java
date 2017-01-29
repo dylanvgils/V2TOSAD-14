@@ -18,7 +18,7 @@ public class AttributeCompareGenerate extends Generate<AttributeRule> {
 
         templateAttributeCompare.add("ruleID", rule.getRuleID());
         templateAttributeCompare.add("ruleType", rule.getBusinessRuleType().getCode());
-        templateAttributeCompare.add("application", "x");
+        templateAttributeCompare.add("application", rule.getApplication());
         templateAttributeCompare.add("table", rule.getTables().getName());
         templateAttributeCompare.add("column", rule.getColumns().getName());
         templateAttributeCompare.add("operator", Generate.getOperator(lang, rule.getOperator()));

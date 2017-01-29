@@ -18,7 +18,7 @@ public class ModifyCompareGenerate extends Generate<ModifyRule> {
         ST templateModify = stGroup.getInstanceOf("templateTrigger"+triggerType);
         templateModify.add("ruleID", rule.getRuleID());
         templateModify.add("ruleType", rule.getBusinessRuleType().getCode());
-        templateModify.add("application", "x");
+        templateModify.add("application", rule.getApplication());
         templateModify.add("table", rule.getTables().get(0).getName());
         templateModify.add("table", rule.getTables().get(1).getName());
         templateModify.add("column", rule.getColumns().get(0).getName());

@@ -18,7 +18,7 @@ public class EntityOtherGenerate extends Generate<EntityRule> {
         ST templateEntityOther = stGroup.getInstanceOf("templateTrigger"+triggerType);
         templateEntityOther.add("ruleID", rule.getRuleID());
         templateEntityOther.add("ruleType", rule.getBusinessRuleType().getCode());
-        templateEntityOther.add("application", "x");
+        templateEntityOther.add("application", rule.getApplication());
         templateEntityOther.add("table", rule.getTables().getName());
         templateEntityOther.add("column", rule.getColumns().get(0).getName());
         templateEntityOther.add("columnOther", rule.getColumns().get(1).getName());

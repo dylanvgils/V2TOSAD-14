@@ -17,7 +17,7 @@ public class AttributeListGenerate extends Generate<AttributeRule> {
         ST templateAttributeList = stGroup.getInstanceOf("templateTrigger"+triggerType);
         templateAttributeList.add("ruleID", rule.getRuleID());
         templateAttributeList.add("ruleType", rule.getBusinessRuleType().getCode());
-        templateAttributeList.add("application", "x");
+        templateAttributeList.add("application", rule.getApplication());
         templateAttributeList.add("table", rule.getTables().getName());
         templateAttributeList.add("column", rule.getColumns().getName());
         templateAttributeList.add("operator", rule.getOperator().toUpperCase());

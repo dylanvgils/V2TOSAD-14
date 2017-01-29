@@ -18,7 +18,7 @@ public class TupleCompareGenerate extends Generate<TupleRule> {
         ST templateTupleCompare = stGroup.getInstanceOf("templateTrigger"+triggerType);
         templateTupleCompare.add("ruleID", rule.getRuleID());
         templateTupleCompare.add("ruleType", rule.getBusinessRuleType().getCode());
-        templateTupleCompare.add("application", "x");
+        templateTupleCompare.add("application", rule.getApplication());
         templateTupleCompare.add("table", rule.getTables().getName());
         templateTupleCompare.add("column", rule.getColumns().get(0).getName());
         templateTupleCompare.add("columnOther", rule.getColumns().get(1).getName());
