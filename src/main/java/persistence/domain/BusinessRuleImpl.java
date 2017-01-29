@@ -50,6 +50,24 @@ public class BusinessRuleImpl extends BaseDAO implements BusinessRuleDAO {
                             ruleType,
                             PersistenceDomainFacade.getFailureHandeling(rs.getInt("failure_id"))
                         );
+                    case "EOTH":
+                        return new EntityRule(
+                            rs.getInt("rule_id"),
+                            rs.getString("name"),
+                            rs.getString("operator"),
+                            rs.getString("trigger_type"),
+                            ruleType,
+                            PersistenceDomainFacade.getFailureHandeling(rs.getInt("failure_id"))
+                        );
+                    case "MODI":
+                        return new ModifyRule(
+                            rs.getInt("rule_id"),
+                            rs.getString("name"),
+                            rs.getString("operator"),
+                            rs.getString("trigger_type"),
+                            ruleType,
+                            PersistenceDomainFacade.getFailureHandeling(rs.getInt("failure_id"))
+                        );
                 }
             }
         } catch (SQLException e) {
