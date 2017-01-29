@@ -1,7 +1,6 @@
 package businessLogic.domain;
 
 import persistence.PersistenceDomainFacade;
-import persistence.domain.AttributeImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +12,7 @@ public abstract class BusinessRule<X> {
 
     private int ruleID;
     private String name;
+    private String application;
     private String operator;
     private String triggerType;
     private BusinessRuleType type;
@@ -26,9 +26,10 @@ public abstract class BusinessRule<X> {
     }
 
 
-    public BusinessRule(int ruleID, String name, String operator, String triggerType, BusinessRuleType type, FailureHandling error) {
+    public BusinessRule(int ruleID, String name, String application, String operator, String triggerType, BusinessRuleType type, FailureHandling error) {
         this.ruleID = ruleID;
         this.name = name;
+        this.application = application;
         this.operator = operator;
         this.triggerType = triggerType;
         this.type = type;

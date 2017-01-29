@@ -7,8 +7,8 @@ import java.util.List;
  */
 public class TupleRule extends BusinessRule {
 
-    public TupleRule(int ruleID, String name, String operator, String triggerType, BusinessRuleType type, FailureHandling error){
-        super(ruleID, name, operator, triggerType, type, error);
+    public TupleRule(int ruleID, String name, String application, String operator, String triggerType, BusinessRuleType type, FailureHandling error){
+        super(ruleID, name, application, operator, triggerType, type, error);
     }
 
     @Override

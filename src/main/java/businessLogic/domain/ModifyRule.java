@@ -7,8 +7,8 @@ import java.util.List;
  */
 public class ModifyRule extends BusinessRule {
 
-    public ModifyRule(int ruleID, String name, String operator, String triggerType, BusinessRuleType type, FailureHandling error){
-        super(ruleID, name, operator, triggerType, type, error);
+    public ModifyRule(int ruleID, String name, String application, String operator, String triggerType, BusinessRuleType type, FailureHandling error){
+        super(ruleID, name, application, operator, triggerType, type, error);
     }
 
     @Override

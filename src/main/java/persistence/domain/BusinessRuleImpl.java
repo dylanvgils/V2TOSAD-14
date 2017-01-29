@@ -27,6 +27,7 @@ public class BusinessRuleImpl extends BaseDAO implements BusinessRuleDAO {
                         return new AttributeRule(
                             rs.getInt("rule_id"),
                             rs.getString("name"),
+                            rs.getString("application"),
                             rs.getString("operator"),
                             rs.getString("trigger_type"),
                             ruleType,
@@ -36,6 +37,7 @@ public class BusinessRuleImpl extends BaseDAO implements BusinessRuleDAO {
                         return new TupleRule(
                             rs.getInt("rule_id"),
                             rs.getString("name"),
+                            rs.getString("application"),
                             rs.getString("operator"),
                             rs.getString("trigger_type"),
                             ruleType,
@@ -45,6 +47,7 @@ public class BusinessRuleImpl extends BaseDAO implements BusinessRuleDAO {
                         return new InterEntityRule(
                             rs.getInt("rule_id"),
                             rs.getString("name"),
+                            rs.getString("application"),
                             rs.getString("operator"),
                             rs.getString("trigger_type"),
                             ruleType,
@@ -54,6 +57,7 @@ public class BusinessRuleImpl extends BaseDAO implements BusinessRuleDAO {
                         return new EntityRule(
                             rs.getInt("rule_id"),
                             rs.getString("name"),
+                            rs.getString("application"),
                             rs.getString("operator"),
                             rs.getString("trigger_type"),
                             ruleType,
@@ -63,6 +67,7 @@ public class BusinessRuleImpl extends BaseDAO implements BusinessRuleDAO {
                         return new ModifyRule(
                             rs.getInt("rule_id"),
                             rs.getString("name"),
+                            rs.getString("application"),
                             rs.getString("operator"),
                             rs.getString("trigger_type"),
                             ruleType,

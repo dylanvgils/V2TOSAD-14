@@ -6,8 +6,8 @@ import java.util.List;
  * Created by Dion on 1/27/2017.
  */
 public class InterEntityRule extends BusinessRule {
-    public InterEntityRule(int ruleID, String name, String operator, String triggerType, BusinessRuleType type, FailureHandling error) {
-        super(ruleID, name, operator, triggerType, type, error);
+    public InterEntityRule(int ruleID, String name, String application, String operator, String triggerType, BusinessRuleType type, FailureHandling error) {
+        super(ruleID, name, application, operator, triggerType, type, error);
     }
 
     @Override
