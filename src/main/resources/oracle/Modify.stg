@@ -1,18 +1,18 @@
-templateTriggerBeforeRow(ruleID, ruleType, application, table, column, columnOther, operator, error_code, error) ::=<<
+templateTriggerBeforeRow(ruleID, ruleType, application, table, tableOther, column, columnOther, operator, FK, error_code, error) ::=<<
 create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
 before insert or update on <table>
 for each row
   DECLARE
     c_exception EXCEPTION;
     l_passed boolean := false;
-    cursor lc_ord is select <tableOther>.<columnOther> from <table> where <table>.<columnOther> = :new.<column>;
+    cursor lc_ord is select <tableOther>.<columnOther> from <tableOther> where <tableOther>.<FK> = :new.<FK>;
 
     l_valueOther <tableOther>.<columnOther>%type;
 begin
     open lc_ord;
     fetch lc_ord into l_valueOther;
     close lc_ord;
-  if not(:new.<column> <operator> l_valueOther) THEN
+  if not(:new.<column> = l_valueOther) THEN
     RAISE c_exception;
   END IF;
 
