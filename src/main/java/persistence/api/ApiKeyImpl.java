@@ -17,8 +17,9 @@ public class ApiKeyImpl extends BaseDAO implements ApiKeyDAO {
 
             ResultSet rs = stmt.executeQuery();
 
-            rs.next();
-            return rs.getInt("id");
+            if (rs.next()) {
+                return rs.getInt("id");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -18,7 +18,6 @@ public class PersistenceGenerateFacade {
     }
 
     public static boolean deactivateRules(List<Integer> rules) {
-
         for (int rule : rules) {
             String name = getTriggerName(rule);
 

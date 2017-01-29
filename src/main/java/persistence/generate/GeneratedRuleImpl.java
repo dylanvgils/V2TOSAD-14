@@ -31,7 +31,9 @@ public class GeneratedRuleImpl extends BaseDAO implements GeneratedRuleDAO {
             stmt.setInt(1, generatedID);
             ResultSet rs = stmt.executeQuery();
 
-            return rs.getString("name");
+            if (rs.next()) {
+                return rs.getString("name");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
