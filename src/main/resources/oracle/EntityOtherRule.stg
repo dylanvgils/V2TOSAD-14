@@ -1,73 +1,58 @@
-templateTriggerBeforeRow(ruleID, ruleType, application, table, tableOther, column, columnOther, operator, FK, error_code, error) ::=<<
-create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
-before insert or update on <table>
-for each row
-  DECLARE
-    c_exception EXCEPTION;
-    l_passed boolean := false;
-    cursor lc_ord is select <tableOther>.<columnOther> from <tableOther> where <tableOther>.<FK> = :new.<FK>;
-
-    l_valueOther <tableOther>.<columnOther>%type;
-begin
-    open lc_ord;
-    fetch lc_ord into l_valueOther;
-    close lc_ord;
-  if not(:new.<column> = l_valueOther) THEN
-    RAISE c_exception;
-  END IF;
+templateTriggerBeforeRow(application, ruleType, ruleID, table, column, columnOther, attribute, attrOperator, operator, error_code, error) ::=<<
+  create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
+  before insert or update on <table>
+  for each row
+    DECLARE
+      c_exception EXCEPTION;
+      l_aantal pls_integer;
+  begin
+    select count(*) into l_aantal from <table> where <table>.<column> <attrOperator> :new.<columnOther>;
+    if not(l_aantal <operator> <attribute>) THEN
+      RAISE c_exception;
+    END IF;
 
 
-  EXCEPTION
-  WHEN c_exception THEN
-    RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
+    EXCEPTION
+    WHEN c_exception THEN
+      RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
 
-end;
->>
-templateTriggerBeforeStatement(ruleID, ruleType, application, table, tableOther, column, columnOther, operator, FK, error_code, error) ::=<<
-create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
-before insert or update on <table>
-  DECLARE
-    c_exception EXCEPTION;
-    l_passed boolean := false;
-    cursor lc_ord is select <tableOther>.<columnOther> from <tableOther> where <tableOther>.<FK> = :new.<FK>;
-
-    l_valueOther <tableOther>.<columnOther>%type;
-begin
-    open lc_ord;
-    fetch lc_ord into l_valueOther;
-    close lc_ord;
-  if not(:new.<column> = l_valueOther) THEN
-    RAISE c_exception;
-  END IF;
+  end;
+  >>
+  templateTriggerBeforeStatement(application, ruleType, ruleID, table, column, columnOther, attribute, attrOperator, operator, error_code, error) ::=<<
+  create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
+  before insert or update on <table>
+    DECLARE
+      c_exception EXCEPTION;
+      l_aantal pls_integer;
+  begin
+    select count(*) into l_aantal from <table> where <table>.<column> <attrOperator> :new.<columnOther>;
+    if not(l_aantal <operator> <attribute>) THEN
+      RAISE c_exception;
+    END IF;
 
 
-  EXCEPTION
-  WHEN c_exception THEN
-    RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
+    EXCEPTION
+    WHEN c_exception THEN
+      RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
 
-end;
->>
-templateTriggerAfterStatement(ruleID, ruleType, application, table, tableOther, column, columnOther, operator, FK, error_code, error) ::=<<
-create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
-after insert or update on <table>
-  DECLARE
-    c_exception EXCEPTION;
-    l_passed boolean := false;
-    cursor lc_ord is select <tableOther>.<columnOther> from <tableOther> where <tableOther>.<FK> = :new.<FK>;
-
-    l_valueOther <tableOther>.<columnOther>%type;
-begin
-    open lc_ord;
-    fetch lc_ord into l_valueOther;
-    close lc_ord;
-  if not(:new.<column> = l_valueOther) THEN
-    RAISE c_exception;
-  END IF;
+  end;
+  >>
+  templateTriggerAfterStatement(application, ruleType, ruleID, table, column, columnOther, attribute, attrOperator, operator, error_code, error) ::=<<
+  create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
+  after insert or update on <table>
+    DECLARE
+      c_exception EXCEPTION;
+      l_aantal pls_integer;
+  begin
+    select count(*) into l_aantal from <table> where <table>.<column> <attrOperator> :new.<columnOther>;
+    if not(l_aantal <operator> <attribute>) THEN
+      RAISE c_exception;
+    END IF;
 
 
-  EXCEPTION
-  WHEN c_exception THEN
-    RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
+    EXCEPTION
+    WHEN c_exception THEN
+      RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
 
-end;
->>
+  end;
+  >>

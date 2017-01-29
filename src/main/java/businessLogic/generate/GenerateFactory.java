@@ -16,12 +16,12 @@ public class GenerateFactory {
             return new AttributeListGenerate();
         }else if(generateType.equalsIgnoreCase("TCMP")) {
             return new TupleCompareGenerate();
-        }else if(generateType.equalsIgnoreCase("TOTH")){
-            return new TupleOtherGenerate();
         }else if(generateType.equalsIgnoreCase("EOTH")){
             return new EntityOtherGenerate();
         }else if(generateType.equalsIgnoreCase("ICMP")){
             return new InterEntityCompareGenerate();
+        }else if(generateType.equalsIgnoreCase("MODI")){
+            return new ModifyCompareGenerate();
         }
 
         return null;
