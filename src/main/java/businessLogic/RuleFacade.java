@@ -32,7 +32,7 @@ public class RuleFacade {
         try {
             rule = BusinessRule.getRule(ruleID);
 
-            if (rule.getType().getCode().startsWith("A") || rule.getType().getCode().startsWith("E") ) {
+            if (rule.getType().getCode().startsWith("A") || rule.getType().getCode().startsWith("E") || rule.getType().getCode().startsWith("I")) {
                 rule.setAttributes(Attribute.getAttributes(ruleID));
             }
 

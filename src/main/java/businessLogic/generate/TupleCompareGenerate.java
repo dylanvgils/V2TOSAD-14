@@ -23,7 +23,7 @@ public class TupleCompareGenerate extends Generate<TupleRule> {
         templateTupleCompare.add("table", rule.getTables().getName());
         templateTupleCompare.add("column", rule.getColumns().get(0).getName());
         templateTupleCompare.add("columnOther", rule.getColumns().get(1).getName());
-        templateTupleCompare.add("operator", rule.getOperator());
+        templateTupleCompare.add("operator", Generate.getOperator(lang, rule.getOperator()));
         templateTupleCompare.add("error_code", rule.getError().getErrorCode());
         templateTupleCompare.add("error", rule.getError().getMessage());
 
