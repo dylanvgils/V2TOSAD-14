@@ -26,6 +26,8 @@ public class InterEntityCompareGenerate extends Generate<InterEntityRule> {
         templateInterEntityCompare.add("columnOther", rule.getColumns().get(1).getName());
         templateInterEntityCompare.add("operator", Generate.getOperator(lang, rule.getOperator()));
         templateInterEntityCompare.add("FK", rule.getValueByKey("FK"));
+        templateInterEntityCompare.add("error_code", rule.getError().getErrorCode());
+        templateInterEntityCompare.add("error", rule.getError().getMessage());
         return templateInterEntityCompare.render();
     }
 }
