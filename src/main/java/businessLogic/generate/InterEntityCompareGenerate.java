@@ -21,7 +21,7 @@ public class InterEntityCompareGenerate extends Generate<InterEntityRule> {
         String[] split = rule.getTables().get(0).getName().split("_");
         templateInterEntityCompare.add("short_table", split[1].substring(0, Math.min(split[1].length(), 3)));
         templateInterEntityCompare.add("table", rule.getTables().get(0).getName());
-        templateInterEntityCompare.add("table", rule.getTables().get(1).getName());
+        templateInterEntityCompare.add("tableOther", rule.getTables().get(1).getName());
         templateInterEntityCompare.add("column", rule.getColumns().get(0).getName());
         templateInterEntityCompare.add("columnOther", rule.getColumns().get(1).getName());
         templateInterEntityCompare.add("operator", Generate.getOperator(lang, rule.getOperator()));
