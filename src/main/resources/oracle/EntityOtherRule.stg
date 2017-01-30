@@ -18,41 +18,23 @@ WHEN c_exception THEN
 
 end;
   >>
-templateTriggerBeforeStatement(short_table, application, ruleType, ruleID, table, column, columnOther, attribute, attrOperator, function, operator, error_code, error) ::=<<
-create or replace trigger <application>_<short_table>_TRIGGER_<ruleType>_<ruleID>
-before insert or update on <table>
-DECLARE
-  c_exception EXCEPTION;
-  l_aantal NUMBER;
-begin
-select <function>(*) into l_aantal from <table> where <table>.<column> <attrOperator> :new.<columnOther>;
-if not(l_aantal <operator> <attribute>) THEN
-  RAISE c_exception;
-END IF;
-
-
-EXCEPTION
-WHEN c_exception THEN
-  RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
-
-end;
->>
-templateTriggerAfterStatement(short_table, application, ruleType, ruleID, table, column, columnOther, attribute, attrOperator, function, operator, error_code, error) ::=<<
+templateTriggerBeforeRow(short_table, application, ruleType, ruleID, table, column, columnOther, attribute, attrOperator, function, operator, error_code, error) ::=<<
 create or replace trigger <application>_<short_table>_TRIGGER_<ruleType>_<ruleID>
 after insert or update on <table>
+for each row
 DECLARE
-  c_exception EXCEPTION;
-  l_aantal NUMBER;
+c_exception EXCEPTION;
+l_aantal NUMBER;
 begin
 select <function>(*) into l_aantal from <table> where <table>.<column> <attrOperator> :new.<columnOther>;
 if not(l_aantal <operator> <attribute>) THEN
-  RAISE c_exception;
+RAISE c_exception;
 END IF;
 
 
 EXCEPTION
 WHEN c_exception THEN
-  RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
+RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
 
 end;
 >>

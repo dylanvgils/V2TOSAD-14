@@ -23,51 +23,29 @@ begin
 
 end;
 >>
-templateTriggerBeforeStatement(short_table, ruleID, ruleType, application, table, tableOther, column, columnOther, operator, FK, error_code, error) ::=<<
-create or replace trigger <application>_<short_table>_TRIGGER_<ruleType>_<ruleID>
-before insert or update on <table>
-  DECLARE
-    c_exception EXCEPTION;
-    l_passed boolean := false;
-    cursor lc_ord is select <tableOther>.<columnOther> from <tableOther> where <tableOther>.<FK> = :new.<FK>;
-
-    l_valueOther <tableOther>.<columnOther>%type;
-begin
-    open lc_ord;
-    fetch lc_ord into l_valueOther;
-    close lc_ord;
-  if not(:new.<column> = l_valueOther) THEN
-    RAISE c_exception;
-  END IF;
-
-
-  EXCEPTION
-  WHEN c_exception THEN
-    RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
-
-end;
->>
-templateTriggerAfterStatement(short_table, ruleID, ruleType, application, table, tableOther, column, columnOther, operator, FK, error_code, error) ::=<<
+templateTriggerAfterRow(short_table, ruleID, ruleType, application, table, tableOther, column, columnOther, operator, FK, error_code, error) ::=<<
 create or replace trigger <application>_<short_table>_TRIGGER_<ruleType>_<ruleID>
 after insert or update on <table>
-  DECLARE
-    c_exception EXCEPTION;
-    l_passed boolean := false;
-    cursor lc_ord is select <tableOther>.<columnOther> from <tableOther> where <tableOther>.<FK> = :new.<FK>;
+for each row
+DECLARE
+c_exception EXCEPTION;
+l_passed boolean := false;
+cursor lc_ord is select <tableOther>.<columnOther> from <tableOther> where <tableOther>.<FK> = :new.<FK>;
 
-    l_valueOther <tableOther>.<columnOther>%type;
+l_valueOther <tableOther>.<columnOther>%type;
 begin
-    open lc_ord;
-    fetch lc_ord into l_valueOther;
-    close lc_ord;
-  if not(:new.<column> = l_valueOther) THEN
-    RAISE c_exception;
-  END IF;
+open lc_ord;
+fetch lc_ord into l_valueOther;
+close lc_ord;
+if not(:new.<column> = l_valueOther) THEN
+RAISE c_exception;
+END IF;
 
 
-  EXCEPTION
-  WHEN c_exception THEN
-    RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
+EXCEPTION
+WHEN c_exception THEN
+RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
 
 end;
 >>
+

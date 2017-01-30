@@ -17,41 +17,22 @@ begin
 
 end;
 >>
-
-templateTriggerBeforeStatement(short_table, ruleID, ruleType, application, table, column, operator, min, max, error_code, error) ::=<<
-create or replace trigger <application>_<short_table>_TRIGGER_<ruleType>_<ruleID>
-before insert or update on <table>
-  DECLARE
-    c_exception EXCEPTION;
-    l_passed boolean := false;
-begin
-  if not(:new.<column> <operator> <min> and <max>) THEN
-    RAISE c_exception;
-  END IF;
-
-
-  EXCEPTION
-  WHEN c_exception THEN
-    RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
-
-end;
->>
-
-templateTriggerAfterStatement(short_table, ruleID, ruleType, application, table, column, operator, min, max, error_code, error) ::=<<
+templateTriggerAfterRow(short_table, ruleID, ruleType, application, table, column, operator, min, max, error_code, error) ::=<<
 create or replace trigger <application>_<short_table>_TRIGGER_<ruleType>_<ruleID>
 after insert or update on <table>
-  DECLARE
-    c_exception EXCEPTION;
-    l_passed boolean := false;
+for each row
+DECLARE
+c_exception EXCEPTION;
+l_passed boolean := false;
 begin
-  if not(:new.<column> <operator> <min> and <max>) THEN
-    RAISE c_exception;
-  END IF;
+if not(:new.<column> <operator> <min> and <max>) THEN
+RAISE c_exception;
+END IF;
 
 
-  EXCEPTION
-  WHEN c_exception THEN
-    RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
+EXCEPTION
+WHEN c_exception THEN
+RAISE_APPLICATION_ERROR (-<error_code>, '<error>');
 
 end;
 >>
