@@ -2,11 +2,9 @@ package api.services;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import persistence.PersistenceApiFacade;
 import persistence.PersistenceDatabaseMetaFacade;
 import persistence.databaseMeta.ColumnMetaDTO;
 import persistence.databaseMeta.DatabaseSchemaDTO;
-import persistence.PersistenceDomainFacade;
 import persistence.databaseMeta.TableMetaDTO;
 
 import javax.ws.rs.GET;

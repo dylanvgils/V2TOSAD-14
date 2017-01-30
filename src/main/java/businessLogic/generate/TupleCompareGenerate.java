@@ -1,6 +1,5 @@
 package businessLogic.generate;
 
-import businessLogic.domain.AttributeRule;
 import businessLogic.domain.TupleRule;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;

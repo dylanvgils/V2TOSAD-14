@@ -1,13 +1,7 @@
 package businessLogic.generate;
 
-import businessLogic.domain.AttributeRule;
-import businessLogic.domain.BusinessRule;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import org.stringtemplate.v4.ST;
-import org.stringtemplate.v4.STGroup;
-import org.stringtemplate.v4.STGroupFile;
 
 import java.io.InputStream;
 

@@ -1,7 +1,6 @@
 package businessLogic.generate;
 
 import businessLogic.domain.EntityRule;
-import businessLogic.domain.InterEntityRule;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
@@ -23,8 +22,9 @@ public class EntityOtherGenerate extends Generate<EntityRule> {
         templateEntityOther.add("column", rule.getColumns().get(0).getName());
         templateEntityOther.add("columnOther", rule.getColumns().get(1).getName());
         templateEntityOther.add("attribute", rule.getValueByKey("max"));
-        templateEntityOther.add("attribute", rule.getValueByKey("operator"));
-        templateEntityOther.add("operator", rule.getOperator().toUpperCase());
+        templateEntityOther.add("attrOperator", Generate.getOperator(lang, rule.getValueByKey("operator")));
+        templateEntityOther.add("function", Generate.getOperator(lang, rule.getValueByKey("function")));
+        templateEntityOther.add("operator", Generate.getOperator(lang, rule.getOperator()));
         templateEntityOther.add("error_code", rule.getError().getErrorCode());
         templateEntityOther.add("error", rule.getError().getMessage());
         return templateEntityOther.render();

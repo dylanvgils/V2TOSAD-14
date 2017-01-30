@@ -2,7 +2,6 @@ package api.utils;
 
 import org.json.JSONObject;
 import persistence.PersistenceApiFacade;
-import persistence.PersistenceDomainFacade;
 
 import javax.annotation.Priority;
 import javax.servlet.http.HttpServletRequest;

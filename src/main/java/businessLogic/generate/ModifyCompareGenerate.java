@@ -1,6 +1,5 @@
 package businessLogic.generate;
 
-import businessLogic.domain.InterEntityRule;
 import businessLogic.domain.ModifyRule;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;

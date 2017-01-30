@@ -1,7 +1,6 @@
 package api.services;
 
 
-import businessLogic.RuleFacade;
 import org.json.JSONException;
 import org.json.JSONObject;
 

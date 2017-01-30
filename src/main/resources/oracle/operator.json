@@ -1,12 +1,15 @@
 {
   "equals":           "=",
-  "greaterorequals":  "=>",
-  "lessorequals":     "=<",
+  "greaterorequals":  ">=",
+  "lessorequals":     "<=",
   "notequals":        "!=",
   "between":          "between",
   "notbetween":       "not between",
   "greater":          ">",
   "less":             "<",
   "in":               "in",
-  "notin":             "not in"
+  "notin":            "not in",
+  "count":            "count",
+  "min":              "min",
+  "max":              "max"
 }

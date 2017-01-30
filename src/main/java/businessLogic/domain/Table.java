@@ -18,10 +18,6 @@ public class Table {
         return tables;
     }
 
-    public static void addTable(Table table){
-        tables.add(table);
-    }
-
     public Table(String name) {
         this.name = name;
     }

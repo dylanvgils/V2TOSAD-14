@@ -1,8 +1,5 @@
 package businessLogic.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Dion on 1/13/2017.
  */
@@ -15,6 +12,9 @@ public class FailureHandling {
         this.type = type;
         this.message = message;
         this.errorCode = errorCode;
+    }
+    public String getType(){
+        return type;
     }
 
     public String getMessage() {

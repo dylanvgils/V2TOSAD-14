@@ -1,6 +1,9 @@
 package businessLogic;
 
-import businessLogic.domain.*;
+import businessLogic.domain.Attribute;
+import businessLogic.domain.BusinessRule;
+import businessLogic.domain.Column;
+import businessLogic.domain.Table;
 import businessLogic.generate.Generate;
 import businessLogic.generate.GenerateFactory;
 import persistence.PersistenceGenerateFacade;
@@ -29,7 +32,7 @@ public class RuleFacade {
         try {
             rule = BusinessRule.getRule(ruleID);
 
-            if (rule.getType().getCode().startsWith("A")) {
+            if (rule.getType().getCode().startsWith("A") || rule.getType().getCode().startsWith("E") ) {
                 rule.setAttributes(Attribute.getAttributes(ruleID));
             }
 
