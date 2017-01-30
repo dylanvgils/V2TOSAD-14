@@ -19,6 +19,8 @@ public class AttributeRangeGenerate extends Generate<AttributeRule> {
         templateAttributeRange.add("ruleID", rule.getRuleID());
         templateAttributeRange.add("ruleType", rule.getBusinessRuleType().getCode());
         templateAttributeRange.add("application", rule.getApplication());
+        String[] split = rule.getTables().getName().split("_");
+        templateAttributeRange.add("short_table", split[1].substring(0, Math.min(split[1].length(), 3)));
         templateAttributeRange.add("table", rule.getTables().getName());
         templateAttributeRange.add("column", rule.getColumns().getName());
         templateAttributeRange.add("operator", rule.getOperator().toUpperCase());

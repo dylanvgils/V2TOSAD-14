@@ -1,5 +1,5 @@
-templateTriggerBeforeRow(ruleID, ruleType, application, table, column, operator, min, max, error_code, error) ::=<<
-create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
+templateTriggerBeforeRow(short_table, ruleID, ruleType, application, table, column, operator, min, max, error_code, error) ::=<<
+create or replace trigger <application>_<short_table>_TRIGGER_<ruleType>_<ruleID>
 before insert or update on <table>
 for each row
   DECLARE
@@ -18,8 +18,8 @@ begin
 end;
 >>
 
-templateTriggerBeforeStatement(ruleID, ruleType, application, table, column, operator, min, max, error_code, error) ::=<<
-create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
+templateTriggerBeforeStatement(short_table, ruleID, ruleType, application, table, column, operator, min, max, error_code, error) ::=<<
+create or replace trigger <application>_<short_table>_TRIGGER_<ruleType>_<ruleID>
 before insert or update on <table>
   DECLARE
     c_exception EXCEPTION;
@@ -37,8 +37,8 @@ begin
 end;
 >>
 
-templateTriggerAfterStatement(ruleID, ruleType, application, table, column, operator, min, max, error_code, error) ::=<<
-create or replace trigger <application>_<table>_TRIGGER_<ruleType>_<ruleID>
+templateTriggerAfterStatement(short_table, ruleID, ruleType, application, table, column, operator, min, max, error_code, error) ::=<<
+create or replace trigger <application>_<short_table>_TRIGGER_<ruleType>_<ruleID>
 after insert or update on <table>
   DECLARE
     c_exception EXCEPTION;

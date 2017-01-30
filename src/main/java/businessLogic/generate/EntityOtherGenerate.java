@@ -18,6 +18,8 @@ public class EntityOtherGenerate extends Generate<EntityRule> {
         templateEntityOther.add("ruleID", rule.getRuleID());
         templateEntityOther.add("ruleType", rule.getBusinessRuleType().getCode());
         templateEntityOther.add("application", rule.getApplication());
+        String[] split = rule.getTables().getName().split("_");
+        templateEntityOther.add("short_table", split[1].substring(0, Math.min(split[1].length(), 3)));
         templateEntityOther.add("table", rule.getTables().getName());
         templateEntityOther.add("column", rule.getColumns().get(0).getName());
         templateEntityOther.add("columnOther", rule.getColumns().get(1).getName());

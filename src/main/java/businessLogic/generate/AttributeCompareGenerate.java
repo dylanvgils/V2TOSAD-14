@@ -19,6 +19,8 @@ public class AttributeCompareGenerate extends Generate<AttributeRule> {
         templateAttributeCompare.add("ruleID", rule.getRuleID());
         templateAttributeCompare.add("ruleType", rule.getBusinessRuleType().getCode());
         templateAttributeCompare.add("application", rule.getApplication());
+        String[] split = rule.getTables().getName().split("_");
+        templateAttributeCompare.add("short_table", split[1].substring(0, Math.min(split[1].length(), 3)));
         templateAttributeCompare.add("table", rule.getTables().getName());
         templateAttributeCompare.add("column", rule.getColumns().getName());
         templateAttributeCompare.add("operator", Generate.getOperator(lang, rule.getOperator()));

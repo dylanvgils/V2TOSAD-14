@@ -14,10 +14,13 @@ public class AttributeListGenerate extends Generate<AttributeRule> {
         STGroup stGroup = new STGroupFile(getClass().getClassLoader().getResource(lang.toLowerCase() + "/AttributeListRule.stg").getFile());
 
         String triggerType = rule.getTriggerType();
+
         ST templateAttributeList = stGroup.getInstanceOf("templateTrigger"+triggerType);
         templateAttributeList.add("ruleID", rule.getRuleID());
         templateAttributeList.add("ruleType", rule.getBusinessRuleType().getCode());
         templateAttributeList.add("application", rule.getApplication());
+        String[] split = rule.getTables().getName().split("_");
+        templateAttributeList.add("short_table", split[1].substring(0, Math.min(split[1].length(), 3)));
         templateAttributeList.add("table", rule.getTables().getName());
         templateAttributeList.add("column", rule.getColumns().getName());
         templateAttributeList.add("operator", rule.getOperator().toUpperCase());

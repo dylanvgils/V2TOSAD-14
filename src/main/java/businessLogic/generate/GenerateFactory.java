@@ -20,8 +20,6 @@ public class GenerateFactory {
             return new EntityOtherGenerate();
         }else if(generateType.equalsIgnoreCase("ICMP")){
             return new InterEntityCompareGenerate();
-        }else if(generateType.equalsIgnoreCase("MODI")){
-            return new ModifyCompareGenerate();
         }
 
         return null;
